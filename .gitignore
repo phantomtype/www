@@ -1,0 +1,11 @@
+.DS_Store
+.babelrc
+.idea/
+.next/
+build/
+next.config.js
+node_modules/
+out/
+package-lock.json
+public/
+www.iml

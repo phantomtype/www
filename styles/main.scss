@@ -1,0 +1,14 @@
+$mdc-theme-primary: #333;
+$mdc-theme-secondary: #76ff03;
+//$mdc-theme-background: #aaaaaa;
+
+@import "material-components-web/material-components-web";
+
+body {
+  margin: 0;
+}
+
+.mdc-toolbar {
+  background-color: #fff;
+  color: #000;
+}

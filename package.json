@@ -1,0 +1,33 @@
+{
+  "name": "phantomtype",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "exports": "next export"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^7.1.5",
+    "babel-plugin-module-resolver": "^2.7.1",
+    "babel-plugin-wrap-in-js": "^1.1.1",
+    "glob": "^7.1.2",
+    "material-components-web": "^0.22.0",
+    "next": "^3.2.2",
+    "node-sass": "^4.5.3",
+    "postcss-easy-import": "^3.0.0",
+    "postcss-loader": "^2.0.6",
+    "raw-loader": "^0.5.1",
+    "react": "^15.6.2",
+    "react-dom": "^15.6.2",
+    "sass-loader": "^6.0.6"
+  },
+  "devDependencies": {
+    "babel-plugin-inline-react-svg": "^0.4.0"
+  }
+}

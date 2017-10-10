@@ -1,0 +1,70 @@
+#application: phantomtype-180814
+#version: 1
+runtime: go
+api_version: go1
+
+handlers:
+- url: /hello
+  script: _go_app
+
+- url: /(.*\.css)
+  mime_type: text/css
+  static_files: out/\1
+  upload: out/(.*\.css)
+
+- url: /(.*\.html)
+  mime_type: text/html
+  static_files: out/\1
+  upload: out/(.*\.html)
+
+- url: /(.*\.ico)
+  mime_type: image/x-icon
+  static_files: out/\1
+  upload: out/(.*\.ico)
+
+- url: /(.*\.js)
+  mime_type: text/javascript
+  static_files: out/\1
+  upload: out/(.*\.js)
+
+- url: /(.*\.ttf)
+  mime_type: font/truetype
+  static_files: out/\1
+  upload: out/(.*\.ttf)
+
+- url: /(.*\.woff)
+  mime_type: application/x-font-woff
+  static_files: out/\1
+  upload: out/(.*\.woff)
+
+- url: /(.*\.xml)
+  mime_type: application/xml
+  static_files: out/\1
+  upload: out/(.*\.xml)
+
+- url: /(.*\.(bmp|gif|ico|jpeg|jpg|png|svg))
+  static_files: out/\1
+  upload: out/(.*\.(bmp|gif|ico|jpeg|jpg|png|svg))
+
+- url: /(.+)/
+  static_files: out/\1/index.html
+  upload: out/(.+)/index.html
+
+- url: /(.+)
+  static_files: out/\1/index.html
+  upload: out/(.+)/index.html
+
+- url: /
+  static_files: out/index.html
+  upload: out/index.html
+
+skip_files:
+  - ^\.idea/.*
+  - ^\.git/.*
+  - ^\.github/.*
+  - ^\.next/.*
+  - ^node_modules/(.*/)?
+  - ^build/.*
+  - ^components/.*
+  - ^pages/.*
+
