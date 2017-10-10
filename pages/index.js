@@ -1,66 +1,34 @@
 import React from 'react'
 
 import Layout from '../components/layout'
+import Logomark from '../resouces/images/logomark-white.svg'
 
 export default () => (
   <Layout title="PHANTOM TYPE">
-    <section>
-      <div className="mdc-layout-grid">
-        <div className="mdc-layout-grid__inner">
-          <div className="mdc-layout-grid__cell">
-            <div className="mdc-card card__big-image">
-              <section className="mdc-card__media shimogamo"></section>
-              <section className="mdc-card__primary">
-                <h1 className="mdc-card__title mdc-card__title--large">Shimogamo</h1>
-                <h2 className="mdc-card__subtitle">Kyoto</h2>
-              </section>
-            </div>
-          </div>
-          <div className="mdc-layout-grid__cell">
-            <div className="mdc-card">
-              <section className="mdc-card__media shimogamo2"></section>
-              <section className="mdc-card__primary">
-                <h1 className="mdc-card__title mdc-card__title--large">Shimogamo</h1>
-                <h2 className="mdc-card__subtitle">Kyoto</h2>
-              </section>
-            </div>
-          </div>
-          <div className="mdc-layout-grid__cell">
-            <div className="mdc-card">
-              <section className="mdc-card__media kitano"></section>
-              <section className="mdc-card__primary">
-                <h1 className="mdc-card__title mdc-card__title--large">Nijo</h1>
-                <h2 className="mdc-card__subtitle">Kyoto</h2>
-              </section>
-            </div>
-          </div>
-        </div>
-      </div>
+    <section className="splash">
+        <img className="splash"
+             src="https://storage.googleapis.com/phantomtype-180814.appspot.com/photos/kyoto/DSCF8041.jpg"/>
+      <h1>PHANTOM TYPE <Logomark/><span className="soon">coming soon...</span></h1>
     </section>
     <style jsx>{`
+      section.splash {
+        width: 100%;
+        height: 100vh;
+      }
+      img.splash {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
       h1 {
-        text-align: center;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        color: #fff;
+        font-size: 6.52768vw;
       }
-      .mdc-card {
-        width: 380px;
-      }
-      .shimogamo {
-        background-image: url("https://storage.googleapis.com/phantomtype-180814.appspot.com/photos/kyoto/DSCF8041_tmb.jpg");
-        background-size: cover;
-        background-repeat: no-repeat;
-        height: 220px;
-      }
-      .shimogamo2 {
-        background-image: url("https://storage.googleapis.com/phantomtype-180814.appspot.com/photos/kyoto/DSCF8084_tmb.jpg");
-        background-size: cover;
-        background-repeat: no-repeat;
-        height: 220px;
-      }
-      .kitano {
-        background-image: url("https://storage.googleapis.com/phantomtype-180814.appspot.com/photos/kyoto/DSCF8269_tmb.jpg");
-        background-size: cover;
-        background-repeat: no-repeat;
-        height: 220px;
+      .soon {
+        font-size: 1.5vw;
       }
     `}</style>
   </Layout>
