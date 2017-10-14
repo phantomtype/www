@@ -7,7 +7,7 @@ export default () => (
   <Layout title="PHANTOM TYPE">
     <section className="splash">
         <img className="splash"
-             src="https://storage.googleapis.com/phantomtype-180814.appspot.com/photos/kyoto/DSCF8041.jpg"/>
+             src="https://storage.googleapis.com/phantomtype-180814.appspot.com/splash/splash-1.jpg"/>
       <h1>PHANTOM TYPE <Logomark/><span className="soon">coming soon...</span></h1>
     </section>
     <section>
