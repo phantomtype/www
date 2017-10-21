@@ -6,33 +6,48 @@ import Logomark from '../resouces/images/logomark-white.svg'
 
 const photosA = (photos) => (
   photos.photos.map((p, i) =>
-      <div className="mdc-layout-grid__inner">
-    <div className="mdc-layout-grid__cell mdc-layout-grid__cell--span-4">
-      <img className="tmb" src={"https://storage.googleapis.com/phantomtype-180814.appspot.com/" + p.name} />
-    </div>
-        <div className="mdc-layout-grid__cell">
-          <p>X-Pro2</p>
-        </div>
-        <style jsx>{`
+    <div key={i} className={`photo-container align-${i % 2}`}>
+      <div className="photo">
+        <img className="tmb" src={"https://storage.googleapis.com/phantomtype-180814.appspot.com/" + p.name}/>
+      </div>
+      <div className="exif">
+        <p>X-Pro2</p>
+      </div>
+      <style jsx>{`
+      div.photo-container {
+        display: flex;
+        margin: 90px 0px;
+      }
+      .align-0 {
+        justify-content: flex-start;
+      }
+      .align-1 {
+        justify-content: flex-end;
+      }
+      .align-1 .photo {
+        order: 1;
+      }
+      .exif {
+        margin: 0 15px;
+      }
       img.tmb {
         width: 100%;
-        right: 0;
       }
     `}</style>
     </div>
   )
 )
 
-const Index = ({ photos }) => (
+const Index = ({photos}) => (
   <Layout title="PHANTOM TYPE">
     <section className="splash">
-        <img className="splash"
-             src="https://storage.googleapis.com/phantomtype-180814.appspot.com/splash/splash-1.jpg"/>
+      <img className="splash"
+           src="https://storage.googleapis.com/phantomtype-180814.appspot.com/splash/splash-1.jpg"/>
       <h1>PHANTOM TYPE <Logomark/></h1>
     </section>
     <section>
-      <div className="mdc-layout-grid mdc-layout-grid--fixed-column-width mdc-layout-grid--align-right">
-          {photosA(photos)}
+      <div className="photos">
+        {photosA(photos)}
       </div>
     </section>
     <style jsx>{`
@@ -52,17 +67,20 @@ const Index = ({ photos }) => (
         color: #fff;
         font-size: 6.52768vw;
       }
+      .photos {
+        margin: 0 50px;
+      }
     `}</style>
   </Layout>
 )
 
-Index.getInitialProps = async ({ req }) => {
-  const baseUrl = "https://phantomtype.com"
-  // const baseUrl = "http://localhost:8080"
+Index.getInitialProps = async ({req}) => {
+  // const baseUrl = "https://phantomtype.com"
+  const baseUrl = "http://localhost:8080"
   const res = await fetch(baseUrl + "/hello")
   const json = await res.json()
   console.log(json)
-  return { photos: json }
+  return {photos: json}
 }
 
 export default Index

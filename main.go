@@ -50,7 +50,7 @@ func handler(w http.ResponseWriter, r *http.Request)  {
 		if err != nil {
 			return
 		}
-		if strings.HasSuffix(o.Name, "_tmb.jpg") {
+		if strings.HasSuffix(o.Name, "_g.jpg") {
 			photo := Photo{o.CustomerKeySHA256,o.Name, o.Size}
 			photos = append(photos, photo)
 		}
