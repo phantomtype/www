@@ -3,27 +3,6 @@
     "next/babel"
   ],
   "plugins": [
-    "inline-react-svg",
-    [
-      "module-resolver",
-      {
-        "root": [
-          "."
-        ],
-        "alias": {
-          "styles": "./styles"
-        },
-        "cwd": "babelrc"
-      }
-    ],
-    [
-      "wrap-in-js",
-      {
-        "extensions": [
-          "css$",
-          "scss$"
-        ]
-      }
-    ]
+    "inline-react-svg"
   ]
 }
