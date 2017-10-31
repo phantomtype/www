@@ -1,0 +1,21 @@
+[
+  {
+    "origin": [
+      "http://localhost:3000",
+      "http://phantomtype.com",
+      "https://phantomtype.com",
+      "https://www.phantomtype.com"
+    ],
+    "responseHeader": [
+      "Content-Type",
+      "Accept",
+      "X-Requested-With",
+      "Access-Control-Allow-Credentials"
+    ],
+    "method": [
+      "GET",
+      "OPTIONS"
+    ],
+    "maxAgeSeconds": 60
+  }
+]
