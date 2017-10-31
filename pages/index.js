@@ -6,6 +6,18 @@ import Logomark from '../resouces/images/logomark-white.svg'
 
 import PhotosA from '../components/photo'
 
+class Photos extends React.Component {
+  render() {
+    return (
+      this.props.photos.photos.map((p, i) => {
+        const src = "https://storage.googleapis.com/phantomtype-180814.appspot.com/" + p.name;
+        console.log(src);
+        // const src = "https://storage.googleapis.com/phantomtype-180814.appspot.com/photos/kyoto/DSCF8068_g.jpg'";
+        return <PhotosA key={i} photo={p} src={src} align={i % 2} />
+      })
+    )
+  }
+}
 
 class Index extends React.Component {
   static async getInitialProps () {
@@ -27,7 +39,7 @@ class Index extends React.Component {
         </section>
         <section>
           <div className="photos">
-            <PhotosA photos={this.props.photos} />
+            <Photos photos={this.props.photos} />
           </div>
         </section>
         <style jsx>{`

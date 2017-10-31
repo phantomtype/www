@@ -42,6 +42,7 @@ func handler(w http.ResponseWriter, r *http.Request)  {
 
 	objects := bucket.Objects(ctx, nil)
 	photos := []Photo{}
+	//for i := 0; i < 5; i++ {
 	for {
 		o, err := objects.Next()
 		if err == iterator.Done {
