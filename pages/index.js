@@ -25,6 +25,7 @@ class Index extends React.Component {
     const baseUrl = "http://localhost:8080"
     const res = await fetch(baseUrl + "/hello")
     const json = await res.json()
+    console.log(baseUrl)
     console.log(json)
     return {photos: json}
   }
