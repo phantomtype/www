@@ -11,8 +11,6 @@ class Photos extends React.Component {
     return (
       this.props.photos.photos.map((p, i) => {
         const src = "https://storage.googleapis.com/phantomtype-180814.appspot.com/" + p.name;
-        console.log(src);
-        // const src = "https://storage.googleapis.com/phantomtype-180814.appspot.com/photos/kyoto/DSCF8068_g.jpg'";
         return <PhotosA key={i} photo={p} src={src} align={i % 2} />
       })
     )
