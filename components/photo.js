@@ -46,15 +46,13 @@ class PhotosA extends React.Component {
     return (
       <div key={this.props.key} className={`photo-container align-${this.props.align}`}>
         <div className="photo">
-          <img src={this.props.src} onLoad={this.imageOnLoad.bind(this)} className="tmb"/>
+          <img src={this.props.src} onClick={this.imageOnLoad.bind(this)} onLoad={this.imageOnLoad.bind(this)} className="tmb"/>
         </div>
         <div className="exif">
-          <p>{this.state.Make} {this.state.Model}</p>
-          <p>{this.state.DateTime}</p>
-          <p>F{this.state.FNumber}</p>
-          <p>{this.state.ExposureTime.numerator}/{this.state.ExposureTime.denominator}S</p>
-          <p>ISO {this.state.ISOSpeedRatings}</p>
-          <p>{this.state.FocalLength}mm ({this.state.FocalLengthIn35mmFilm}mm)</p>
+          <span>{this.state.Make} {this.state.Model}</span>
+          <span>{this.state.DateTime}</span>
+          <span>{this.state.FocalLength}mm ({this.state.FocalLengthIn35mmFilm}mm) ／ F{this.state.FNumber} ／ {this.state.ExposureTime.numerator}/{this.state.ExposureTime.denominator}S</span>
+          <span>ISO {this.state.ISOSpeedRatings}</span>
         </div>
         <style jsx>{`
       div.photo-container {
@@ -72,6 +70,13 @@ class PhotosA extends React.Component {
       }
       .exif {
         margin: 0 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 10vh;
+        color: #999;
+        font-size: 85%;
+
       }
       img.tmb {
         width: 100%;
