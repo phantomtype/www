@@ -1,4 +1,5 @@
 import React from 'react'
+import Scroll from "react-scroll";
 import 'isomorphic-fetch'
 
 import Layout from '../components/layout'
@@ -28,6 +29,11 @@ class Index extends React.Component {
     return {photos: json}
   }
 
+  scroll() {
+    var scroll = Scroll.animateScroll;
+    scroll.scrollTo(500, {duration: 500, delay: 100, smooth: true})
+  }
+
   render () {
     return (
       <Layout title="PHANTOM TYPE">
@@ -35,6 +41,7 @@ class Index extends React.Component {
           <img className="splash"
                src="https://storage.googleapis.com/phantomtype-180814.appspot.com/splash/splash-1.jpg"/>
           <h1>PHANTOM TYPE <Logomark/></h1>
+          <a onClick={this.scroll} className="arrow">▽</a>
         </section>
         <section>
           <div className="photos">
@@ -57,6 +64,15 @@ class Index extends React.Component {
         left: 50%;
         color: #fff;
         font-size: 6.52768vw;
+      }
+      a.arrow {
+        position: absolute;
+        font-size: 30px;
+        top: 85%;
+        left: 50%;
+        color: #fff;
+        text-decoration: none;
+        cursor: pointer;
       }
     `}</style>
       </Layout>
