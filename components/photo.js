@@ -56,17 +56,25 @@ class PhotosA extends React.Component {
         </div>
         <style jsx>{`
       div.photo-container {
-        display: flex;
         margin: 90px 0px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
       }
-      .align-0 {
-        justify-content: flex-start;
+      .align-0 .exif {
+        grid-column: 2;
+        grid-row: 1;
       }
-      .align-1 {
-        justify-content: flex-end;
+      .align-0 .photo {
+        grid-column: 1;
+        grid-row: 1;
+      }
+      .align-1 .exif {
+        grid-column: 1;
+        grid-row: 2;
       }
       .align-1 .photo {
-        order: 1;
+        grid-column: 2;
+        grid-row: 2;
       }
       .exif {
         margin: 0 15px;
@@ -76,10 +84,6 @@ class PhotosA extends React.Component {
         height: 10vh;
         color: #999;
         font-size: 85%;
-
-      }
-      img.tmb {
-        width: 100%;
       }
     `}</style>
       </div>
