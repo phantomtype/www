@@ -56,7 +56,7 @@ class PhotosA extends React.Component {
         </div>
         <style jsx>{`
       div.photo-container {
-        margin: 90px 0px;
+        margin: 90px 20px;
         display: grid;
         grid-template-columns: 1fr 1fr;
       }
@@ -84,6 +84,21 @@ class PhotosA extends React.Component {
         height: 10vh;
         color: #999;
         font-size: 85%;
+      }
+      @media (max-width: 600px){
+        div.photo-container {
+          margin: 20px 3px;
+          grid-template-columns: 1fr;
+          grid-template-rows: auto;
+        }
+        .align-0 .photo, .align-0 .exif,
+        .align-1 .photo, .align-1 .exif {
+          grid-column: 1;
+          grid-row: auto;
+        }
+        img.tmb {
+          width: 100%;
+        }
       }
     `}</style>
       </div>

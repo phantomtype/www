@@ -58,9 +58,6 @@ class Index extends React.Component {
         color: #fff;
         font-size: 6.52768vw;
       }
-      .photos {
-        margin: 0 50px;
-      }
     `}</style>
       </Layout>
     )
