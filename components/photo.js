@@ -63,6 +63,7 @@ class PhotosA extends React.Component {
       .align-0 .exif {
         grid-column: 2;
         grid-row: 1;
+        text-align: left;
       }
       .align-0 .photo {
         grid-column: 1;
@@ -71,13 +72,14 @@ class PhotosA extends React.Component {
       .align-1 .exif {
         grid-column: 1;
         grid-row: 2;
+        text-align: right;
       }
       .align-1 .photo {
         grid-column: 2;
         grid-row: 2;
       }
       .exif {
-        margin: 0 15px;
+        margin: 20px 15px;
         display: flex;
         flex-direction: column;
         justify-content: space-around;

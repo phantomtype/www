@@ -20,18 +20,18 @@ class Photos extends React.Component {
 
 class Index extends React.Component {
   static async getInitialProps () {
-    // const baseUrl = "https://phantomtype.com"
-    const baseUrl = "http://localhost:8080"
-    const res = await fetch(baseUrl + "/hello")
-    const json = await res.json()
-    console.log(baseUrl)
-    console.log(json)
+    const baseUrl = "https://phantomtype.com";
+    // const baseUrl = "http://localhost:8080"
+    const res = await fetch(baseUrl + "/hello");
+    const json = await res.json();
+    console.log(baseUrl);
+    console.log(json);
     return {photos: json};
   }
 
   scroll() {
     var scroll = Scroll.animateScroll;
-    scroll.scrollTo(500, {duration: 500, delay: 100, smooth: true})
+    scroll.scrollTo(500, {duration: 500, delay: 100, smooth: true});
   }
 
   render () {
@@ -40,10 +40,12 @@ class Index extends React.Component {
         <section className="splash">
           <img className="splash"
                src="https://storage.googleapis.com/phantomtype-180814.appspot.com/splash/splash-1.jpg"/>
-          <h1>PHANTOM TYPE <Logomark/></h1>
+          <h1>PHANTOM TYPE <Logomark className="logo" /></h1>
           <button onClick={this.scroll} className="arrow">▽</button>
         </section>
-        <section>
+        <section className="photo-container">
+          <h2>KYOTO - 京都</h2>
+          <p className="desc">THE HISTORY OF JAPAN.</p>
           <div className="photos">
             <Photos photos={this.props.photos} />
           </div>
@@ -68,7 +70,7 @@ class Index extends React.Component {
       .arrow {
         position: absolute;
         font-size: 30px;
-        bottom: 15vh;
+        bottom: 10vh;
         left: 50%;
         color: #fff;
         text-decoration: none;
@@ -79,6 +81,18 @@ class Index extends React.Component {
         background-color: initial;
         cursor: pointer;
         border: none;
+      }
+      .photo-container {
+        margin: 150px 0;
+      }
+      h2 {
+        text-align: center;
+        font-size: 4vw;
+      }
+      .desc {
+        text-align: center;
+        font-size: 3.5vw;
+        color: #999;
       }
     `}</style>
       </Layout>
