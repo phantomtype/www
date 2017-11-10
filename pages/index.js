@@ -1,20 +1,20 @@
-import React from "react"
+import React from "react";
 import Scroll from "react-scroll";
-import "isomorphic-fetch"
+import "isomorphic-fetch";
 
-import Layout from "../components/layout"
-import Logomark from "../resouces/images/logomark-white.svg"
+import Layout from "../components/layout";
+import Logomark from "../resouces/images/logomark-white.svg";
 
-import PhotosA from "../components/photo"
+import PhotosA from "../components/photo";
 
 class Photos extends React.Component {
   render() {
     return (
       this.props.photos.photos.map((p, i) => {
         const src = "https://storage.googleapis.com/phantomtype-180814.appspot.com/" + p.name;
-        return <PhotosA key={i} photo={p} src={src} align={i % 2} />
+        return <PhotosA key={i} photo={p} src={src} align={i % 2} />;
       })
-    )
+    );
   }
 }
 
@@ -26,7 +26,7 @@ class Index extends React.Component {
     const json = await res.json()
     console.log(baseUrl)
     console.log(json)
-    return {photos: json}
+    return {photos: json};
   }
 
   scroll() {
@@ -76,8 +76,8 @@ class Index extends React.Component {
       }
     `}</style>
       </Layout>
-    )
+    );
   }
 }
 
-export default Index
+export default Index;

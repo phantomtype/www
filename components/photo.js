@@ -1,10 +1,10 @@
-import React from "react"
+import React from "react";
 
-import EXIF from "exif-js"
+import EXIF from "exif-js";
 
 class PhotosA extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       Model: "",
       Make: "",
@@ -14,11 +14,11 @@ class PhotosA extends React.Component {
       FocalLength: "",
       FocalLengthIn35mmFilm: "",
       ExposureTime: ""
-    }
+    };
   }
 
   imageOnLoad(...args) {
-    const [event, ...otherArgs] = args;
+    const [event, ..._] = args;
     const imageElement: HTMLImageElement = event.target;
 
     const windowImage = window.Image;
@@ -35,7 +35,7 @@ class PhotosA extends React.Component {
           FocalLength: EXIF.getTag(imageElement, "FocalLength").toString(),
           FocalLengthIn35mmFilm: EXIF.getTag(imageElement, "FocalLengthIn35mmFilm").toString(),
           ExposureTime: EXIF.getTag(imageElement, "ExposureTime"),
-        })
+        });
       })) {
     }
 
@@ -102,8 +102,8 @@ class PhotosA extends React.Component {
       }
     `}</style>
       </div>
-    )
+    );
   }
 }
 
-export default PhotosA
+export default PhotosA;

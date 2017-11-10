@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React from "react";
 
-export default Layout(props) => (
+export default (props) => (
   <div>
     <Head>
       <title>{props.title}</title>
