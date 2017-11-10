@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react"
 import Scroll from "react-scroll";
-import 'isomorphic-fetch'
+import "isomorphic-fetch"
 
-import Layout from '../components/layout'
-import Logomark from '../resouces/images/logomark-white.svg'
+import Layout from "../components/layout"
+import Logomark from "../resouces/images/logomark-white.svg"
 
-import PhotosA from '../components/photo'
+import PhotosA from "../components/photo"
 
 class Photos extends React.Component {
   render() {

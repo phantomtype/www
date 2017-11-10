@@ -1,6 +1,6 @@
-import Dom from 'react-dom'
+import Dom from "react-dom"
 
-import Logomark from '../resouces/images/logomark.svg'
+import Logomark from "../resouces/images/logomark.svg"
 
 class HelloPT extends React.Component {
   constructor(props) {
