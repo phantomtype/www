@@ -41,7 +41,7 @@ class Index extends React.Component {
           <img className="splash"
                src="https://storage.googleapis.com/phantomtype-180814.appspot.com/splash/splash-1.jpg"/>
           <h1>PHANTOM TYPE <Logomark/></h1>
-          <a onClick={this.scroll} className="arrow">▽</a>
+          <button onClick={this.scroll} className="arrow">▽</button>
         </section>
         <section>
           <div className="photos">
@@ -65,14 +65,20 @@ class Index extends React.Component {
         color: #fff;
         font-size: 6.52768vw;
       }
-      a.arrow {
+      .arrow {
         position: absolute;
         font-size: 30px;
-        top: 85%;
+        bottom: 15vh;
         left: 50%;
         color: #fff;
         text-decoration: none;
         cursor: pointer;
+        transform: translate3d(-50%, 0, 0);
+      }
+      button {
+        background-color: initial;
+        cursor: pointer;
+        border: none;
       }
     `}</style>
       </Layout>
