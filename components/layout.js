@@ -8,7 +8,22 @@ export default (props) => (
       <meta charSet='utf-8'/>
       <meta name='viewport' content='initial-scale=1.0, width=device-width'/>
       <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+      <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/notosansjp.css"/>
     </Head>
     {props.children}
+    <style jsx global>{`
+      body {
+        font-family: 'Noto Sans JP', sans-serif;
+        font-size: 100%;
+      }
+      svg.logo {
+        width: 25vw;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate3d(-50%, 0, 0);
+      }
+    `}
+    </style>
   </div>
-)
+);

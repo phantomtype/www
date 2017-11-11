@@ -31,7 +31,7 @@ class Index extends React.Component {
 
   scroll() {
     var scroll = Scroll.animateScroll;
-    scroll.scrollTo(500, {duration: 500, delay: 100, smooth: true});
+    scroll.scrollTo(screen.height, {duration: 500, delay: 100, smooth: true});
   }
 
   render () {
@@ -40,7 +40,8 @@ class Index extends React.Component {
         <section className="splash">
           <img className="splash"
                src="https://storage.googleapis.com/phantomtype-180814.appspot.com/splash/splash-1.jpg"/>
-          <h1>PHANTOM TYPE <Logomark className="logo" /></h1>
+          <Logomark className="logo" />
+          <h1>PHANTOM TYPE </h1>
           <button onClick={this.scroll} className="arrow">▽</button>
         </section>
         <section className="photo-container">
@@ -62,14 +63,17 @@ class Index extends React.Component {
       }
       h1 {
         position: absolute;
+        margin: 1vh 0;
         top: 50%;
         left: 50%;
         color: #fff;
-        font-size: 6.52768vw;
+        font-size: 5.52768vw;
+        font-weight: 200;
+        transform: translate3d(-50%, 0, 0);
       }
       .arrow {
         position: absolute;
-        font-size: 30px;
+        font-size: 4vw;
         bottom: 10vh;
         left: 50%;
         color: #fff;
