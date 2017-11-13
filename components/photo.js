@@ -56,7 +56,7 @@ class PhotosA extends React.Component {
         </div>
         <style jsx>{`
       div.photo-container {
-        margin: 90px 20px;
+        margin: 90px 0;
         display: grid;
         grid-template-columns: 1fr 1fr;
       }
@@ -89,7 +89,7 @@ class PhotosA extends React.Component {
       }
       @media (max-width: 600px){
         div.photo-container {
-          margin: 20px 3px;
+          margin: 20px 0;
           grid-template-columns: 1fr;
           grid-template-rows: auto;
         }

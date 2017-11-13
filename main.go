@@ -40,7 +40,9 @@ func handler(w http.ResponseWriter, r *http.Request)  {
 
 	bucket := client.Bucket(bucketName)
 
-	objects := bucket.Objects(ctx, nil)
+	prefix := "photos/" + r.FormValue("d")
+
+	objects := bucket.Objects(ctx, &storage.Query{Delimiter: "", Prefix: prefix})
 	photos := []Photo{}
 	//for i := 0; i < 5; i++ {
 	for {
@@ -51,6 +53,7 @@ func handler(w http.ResponseWriter, r *http.Request)  {
 		if err != nil {
 			return
 		}
+		log.Print(o)
 		if strings.HasSuffix(o.Name, "_g.jpg") {
 			photo := Photo{o.CustomerKeySHA256,o.Name, o.Size}
 			photos = append(photos, photo)

@@ -25,9 +25,9 @@ Photos.propTypes = {
 
 class Index extends React.Component {
   static async getInitialProps () {
-    const baseUrl = "https://phantomtype.com";
-    // const baseUrl = "http://localhost:8080"
-    const res = await fetch(baseUrl + "/hello");
+    // const baseUrl = "https://phantomtype.com";
+    const baseUrl = "http://localhost:8080"
+    const res = await fetch(baseUrl + "/hello?d=kyoto/kibune");
     const json = await res.json();
     console.log(baseUrl);
     console.log(json);
@@ -52,8 +52,8 @@ class Index extends React.Component {
           <button onClick={this.scroll} className="arrow">▽</button>
         </section>
         <section className="photo-container">
-          <h2>KYOTO - 京都</h2>
-          <p className="desc">THE HISTORY OF JAPAN.</p>
+          <h2>KYOTO - 京都 <span className="desc">THE HISTORY OF JAPAN.</span></h2>
+          <h3>KIBUNE 貴船</h3>
           <div className="photos">
             <Photos photos={this.props.photos} />
           </div>
@@ -100,16 +100,24 @@ class Index extends React.Component {
         border: none;
       }
       .photo-container {
-        margin: 150px 0;
+        margin: 150px 20px;
       }
       h2 {
         text-align: center;
-        font-size: 4vw;
+        font-size: 5vw;
+        margin: 30px 0;
       }
       .desc {
-        text-align: center;
-        font-size: 3.5vw;
+        font-size: 2.0vw;
         color: #999;
+      }
+      h3 {
+        font-size: 3vw;
+      }
+      @media (max-width: 600px){
+        div.photo-container {
+          margin: 20px 0;
+        }
       }
     `}</style>
       </Layout>
