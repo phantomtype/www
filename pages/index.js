@@ -40,8 +40,10 @@ class Index extends React.Component {
         <section className="splash">
           <img className="splash"
                src="https://storage.googleapis.com/phantomtype-180814.appspot.com/splash/splash-1.jpg"/>
-          <Logomark className="logo" />
-          <h1>PHANTOM TYPE </h1>
+          <div className="title">
+            <Logomark className="logo" />
+            <h1>PHANTOM TYPE </h1>
+          </div>
           <button onClick={this.scroll} className="arrow">▽</button>
         </section>
         <section className="photo-container">
@@ -61,15 +63,21 @@ class Index extends React.Component {
         height: 100%;
         object-fit: cover;
       }
-      h1 {
+      .title {
+        display: inline-flex;
+        flex-direction: column;
         position: absolute;
-        margin: 1vh 0;
         top: 50%;
         left: 50%;
+        transform: translate3d(-50%, -60%, 0);
+        justify-content: center;
+        align-items: center;
+      }
+      h1 {
+        margin: 1vh 0;
         color: #fff;
         font-size: 5.52768vw;
         font-weight: 200;
-        transform: translate3d(-50%, 0, 0);
       }
       .arrow {
         position: absolute;

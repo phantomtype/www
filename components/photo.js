@@ -101,6 +101,9 @@ class PhotosA extends React.Component {
         img.tmb {
           width: 100%;
         }
+        .exif {
+          margin: 5px 15px;
+        }
       }
     `}</style>
       </div>

@@ -18,10 +18,6 @@ export default (props) => (
       }
       svg.logo {
         width: 25vw;
-        position: absolute;
-        top: 40%;
-        left: 50%;
-        transform: translate3d(-50%, 0, 0);
       }
     `}
     </style>
