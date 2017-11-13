@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import EXIF from "exif-js";
 
@@ -25,7 +26,6 @@ class PhotosA extends React.Component {
     window.Image = null;
 
     if (!EXIF.getData(imageElement, () => {
-        console.log(EXIF.getAllTags(imageElement));
         this.setState({
           Make: EXIF.getTag(imageElement, "Make"),
           Model: EXIF.getTag(imageElement, "Model"),
@@ -44,7 +44,7 @@ class PhotosA extends React.Component {
 
   render() {
     return (
-      <div key={this.props.key} className={`photo-container align-${this.props.align}`}>
+      <div className={`photo-container align-${this.props.align}`}>
         <div className="photo">
           <img src={this.props.src} onClick={this.imageOnLoad.bind(this)} onLoad={this.imageOnLoad.bind(this)} className="tmb"/>
         </div>
@@ -110,5 +110,10 @@ class PhotosA extends React.Component {
     );
   }
 }
+
+PhotosA.propTypes = {
+  src: PropTypes.string,
+  align: PropTypes.number
+};
 
 export default PhotosA;

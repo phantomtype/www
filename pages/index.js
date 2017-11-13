@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Scroll from "react-scroll";
 import "isomorphic-fetch";
 
@@ -17,6 +18,10 @@ class Photos extends React.Component {
     );
   }
 }
+
+Photos.propTypes = {
+  photos: PropTypes.object
+};
 
 class Index extends React.Component {
   static async getInitialProps () {
@@ -111,5 +116,9 @@ class Index extends React.Component {
     );
   }
 }
+
+Index.propTypes = {
+  photos: PropTypes.object
+};
 
 export default Index;

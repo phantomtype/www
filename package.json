@@ -23,6 +23,7 @@
     "react-scroll": "^1.6.4"
   },
   "devDependencies": {
+    "prop-types": "^15.6.0",
     "babel-eslint": "^8.0.2",
     "babel-plugin-inline-react-svg": "^0.4.0",
     "eslint": "^4.10.0",
