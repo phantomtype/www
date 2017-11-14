@@ -111,6 +111,7 @@ class Index extends React.Component {
           <Photos name="SHIMOGAMO 下鴨" src="kyoto/shimogamo" />
           <Photos name="KAMIGAMO 上賀茂" src="kyoto/kamigamo" />
           <Photos name="KAMOGAWA 鴨川" src="kyoto/kamogawa" />
+          <Photos name="YOSHIDA-JINJA 吉田神社" src="kyoto/yoshida" />
         </section>
         <style jsx>{`
       section.splash {
