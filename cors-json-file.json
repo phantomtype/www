@@ -2,6 +2,7 @@
   {
     "origin": [
       "http://localhost:3000",
+      "http://localhost:8080",
       "http://phantomtype.com",
       "https://phantomtype.com",
       "http://www.phantomtype.com",

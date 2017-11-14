@@ -61,6 +61,6 @@ func handler(w http.ResponseWriter, r *http.Request)  {
 	}
 	result := Photos{Name:"hoge", Photos:photos}
 	j, err := json.Marshal(result)
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	fmt.Fprint(w, string(j))
-
 }

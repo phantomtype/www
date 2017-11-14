@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Scroll from "react-scroll";
-import "isomorphic-fetch";
+// import "isomorphic-fetch";
+import axios from "axios";
 
 import Layout from "../components/layout";
 import Logomark from "../resouces/images/logomark-white.svg";
@@ -9,12 +10,32 @@ import Logomark from "../resouces/images/logomark-white.svg";
 import PhotosA from "../components/photo";
 
 class Photos extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      photos: []
+    };
+    const self = this;
+    axios.get('http://localhost:8080/hello', {
+      params: {
+        d: "kyoto/kibune"
+      }
+    }).then(function (response) {
+      self.setState({
+        photos: response.data.photos
+      });
+    }).catch(function (error) {
+      console.log(error);
+    });
+  }
+
   render() {
     return (
       <section className="photo-container">
         <h3>{this.props.name}</h3>
         {
-          this.props.photos.photos.map((p, i) => {
+          this.state.photos.map((p, i) => {
             const src = "https://storage.googleapis.com/phantomtype-180814.appspot.com/" + p.name;
             return <PhotosA key={i} photo={p} src={src} align={i % 2} />;
           })
@@ -43,26 +64,26 @@ Photos.propTypes = {
 };
 
 class Index extends React.Component {
-  static async getInitialProps () {
-    const kibune = await Index.getPhotos("kyoto/kibune");
-    const kurama = await Index.getPhotos("kyoto/kurama");
-    const nijojo = await Index.getPhotos("kyoto/nijojo");
-    const shimogamo = await Index.getPhotos("kyoto/shimogamo");
-    const kamigamo = await Index.getPhotos("kyoto/kamigamo");
-    const kamogawa = await Index.getPhotos("kyoto/kamogawa");
+  // static async getInitialProps () {
+    // const kibune = await Index.getPhotos("kyoto/kibune");
+    // const kurama = await Index.getPhotos("kyoto/kurama");
+    // const nijojo = await Index.getPhotos("kyoto/nijojo");
+    // const shimogamo = await Index.getPhotos("kyoto/shimogamo");
+    // const kamigamo = await Index.getPhotos("kyoto/kamigamo");
+    // const kamogawa = await Index.getPhotos("kyoto/kamogawa");
+    //
+    // return {photos: {kibune, kurama, nijojo, shimogamo, kamigamo, kamogawa}};
+  // }
 
-    return {photos: {kibune, kurama, nijojo, shimogamo, kamigamo, kamogawa}};
-  }
-
-  static async getPhotos(src: string) {
-    // const baseUrl = "https://phantomtype.com";
-    const baseUrl = "http://localhost:8080"
-    const res = await fetch(baseUrl + "/hello?d=" + src);
-    const json = await res.json();
-    console.log(baseUrl);
-    console.log(json);
-    return json;
-  }
+  // static async getPhotos(src: string) {
+  //   // const baseUrl = "https://phantomtype.com";
+  //   const baseUrl = "http://localhost:8080"
+  //   const res = await fetch(baseUrl + "/hello?d=" + src);
+  //   const json = await res.json();
+  //   console.log(baseUrl);
+  //   console.log(json);
+  //   return json;
+  // }
 
   scroll() {
     var scroll = Scroll.animateScroll;
@@ -84,12 +105,13 @@ class Index extends React.Component {
         <section className="photo-container">
           <h2>KYOTO 京都</h2>
           <p className="desc">THE HISTORY OF JAPAN.</p>
-          <Photos name="KIBUNE 貴船" photos={this.props.photos.kibune} />
-          <Photos name="KURAMA 蔵馬" photos={this.props.photos.kurama} />
-          <Photos name="NIJO-JO 二条城" photos={this.props.photos.nijojo} />
-          <Photos name="SHIMOGAMO 下鴨" photos={this.props.photos.shimogamo} />
-          <Photos name="KAMIGAMO 上賀茂" photos={this.props.photos.kamigamo} />
-          <Photos name="KAMOGAWA 鴨川" photos={this.props.photos.kamogawa} />
+          <Photos name="KIBUNE 貴船" />
+          {/*<Photos name="KIBUNE 貴船" photos={this.props.photos.kibune} />*/}
+          {/*<Photos name="KURAMA 蔵馬" photos={this.props.photos.kurama} />*/}
+          {/*<Photos name="NIJO-JO 二条城" photos={this.props.photos.nijojo} />*/}
+          {/*<Photos name="SHIMOGAMO 下鴨" photos={this.props.photos.shimogamo} />*/}
+          {/*<Photos name="KAMIGAMO 上賀茂" photos={this.props.photos.kamigamo} />*/}
+          {/*<Photos name="KAMOGAWA 鴨川" photos={this.props.photos.kamogawa} />*/}
         </section>
         <style jsx>{`
       section.splash {
