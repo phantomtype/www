@@ -19,7 +19,7 @@ class Photos extends React.Component {
     const self = this;
     axios.get('http://localhost:8080/hello', {
       params: {
-        d: "kyoto/kibune"
+        d: props.src
       }
     }).then(function (response) {
       self.setState({
@@ -105,13 +105,12 @@ class Index extends React.Component {
         <section className="photo-container">
           <h2>KYOTO 京都</h2>
           <p className="desc">THE HISTORY OF JAPAN.</p>
-          <Photos name="KIBUNE 貴船" />
-          {/*<Photos name="KIBUNE 貴船" photos={this.props.photos.kibune} />*/}
-          {/*<Photos name="KURAMA 蔵馬" photos={this.props.photos.kurama} />*/}
-          {/*<Photos name="NIJO-JO 二条城" photos={this.props.photos.nijojo} />*/}
-          {/*<Photos name="SHIMOGAMO 下鴨" photos={this.props.photos.shimogamo} />*/}
-          {/*<Photos name="KAMIGAMO 上賀茂" photos={this.props.photos.kamigamo} />*/}
-          {/*<Photos name="KAMOGAWA 鴨川" photos={this.props.photos.kamogawa} />*/}
+          <Photos name="KIBUNE 貴船" src="kyoto/kibune" />
+          <Photos name="KURAMA 蔵馬" src="kyoto/kurama" />
+          <Photos name="NIJO-JO 二条城" src="kyoto/nijojo" />
+          <Photos name="SHIMOGAMO 下鴨" src="kyoto/shimogamo" />
+          <Photos name="KAMIGAMO 上賀茂" src="kyoto/kamigamo" />
+          <Photos name="KAMOGAWA 鴨川" src="kyoto/kamogawa" />
         </section>
         <style jsx>{`
       section.splash {
