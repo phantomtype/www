@@ -11,6 +11,7 @@ export default (props) => (
       <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/notosansjp.css"/>
     </Head>
     {props.children}
+    <footer>(C) PHANTOM TYPE.   <a href="https://twitter.com/phantomtype" rel="noopener noreferrer" target="_blank">Contact us</a></footer>
     <style jsx global>{`
       body {
         font-family: 'Noto Sans JP', sans-serif;
@@ -18,6 +19,10 @@ export default (props) => (
       }
       svg.logo {
         width: 25vw;
+      }
+      footer {
+        text-align: center;
+        margin: 50px 0;
       }
     `}
     </style>
