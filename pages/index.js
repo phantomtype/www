@@ -63,28 +63,41 @@ Photos.propTypes = {
   photos: PropTypes.object
 };
 
+class Kyoto extends React.Component {
+  render() {
+    return (
+      <section className="photo-container">
+        <h2>KYOTO 京都</h2>
+        <p className="desc">THE HISTORY OF JAPAN.</p>
+        <Photos name="KIBUNE 貴船" src="kyoto/kibune" />
+        <Photos name="KURAMA 蔵馬" src="kyoto/kurama" />
+        <Photos name="NIJO-JO 二条城" src="kyoto/nijojo" />
+        <Photos name="SHIMOGAMO 下鴨" src="kyoto/shimogamo" />
+        <Photos name="KAMIGAMO 上賀茂" src="kyoto/kamigamo" />
+        <Photos name="KAMOGAWA 鴨川" src="kyoto/kamogawa" />
+        <Photos name="YOSHIDA-JINJA 吉田神社" src="kyoto/yoshida" />
+        <style jsx>{`
+      .photo-container {
+        margin: 150px 20px;
+      }
+      h2 {
+        text-align: center;
+        font-size: 5vw;
+        margin: 30px 0;
+      }
+      .desc {
+        text-align: center;
+        font-size: 2.5vw;
+        font-weight: 300;
+        color: #999;
+      }
+        `}</style>
+      </section>
+    );
+  }
+}
+
 class Index extends React.Component {
-  // static async getInitialProps () {
-    // const kibune = await Index.getPhotos("kyoto/kibune");
-    // const kurama = await Index.getPhotos("kyoto/kurama");
-    // const nijojo = await Index.getPhotos("kyoto/nijojo");
-    // const shimogamo = await Index.getPhotos("kyoto/shimogamo");
-    // const kamigamo = await Index.getPhotos("kyoto/kamigamo");
-    // const kamogawa = await Index.getPhotos("kyoto/kamogawa");
-    //
-    // return {photos: {kibune, kurama, nijojo, shimogamo, kamigamo, kamogawa}};
-  // }
-
-  // static async getPhotos(src: string) {
-  //   // const baseUrl = "https://phantomtype.com";
-  //   const baseUrl = "http://localhost:8080"
-  //   const res = await fetch(baseUrl + "/hello?d=" + src);
-  //   const json = await res.json();
-  //   console.log(baseUrl);
-  //   console.log(json);
-  //   return json;
-  // }
-
   scroll() {
     var scroll = Scroll.animateScroll;
     scroll.scrollTo(screen.height, {duration: 500, delay: 100, smooth: true});
@@ -102,17 +115,7 @@ class Index extends React.Component {
           </div>
           <button onClick={this.scroll} className="arrow">▽</button>
         </section>
-        <section className="photo-container">
-          <h2>KYOTO 京都</h2>
-          <p className="desc">THE HISTORY OF JAPAN.</p>
-          <Photos name="KIBUNE 貴船" src="kyoto/kibune" />
-          <Photos name="KURAMA 蔵馬" src="kyoto/kurama" />
-          <Photos name="NIJO-JO 二条城" src="kyoto/nijojo" />
-          <Photos name="SHIMOGAMO 下鴨" src="kyoto/shimogamo" />
-          <Photos name="KAMIGAMO 上賀茂" src="kyoto/kamigamo" />
-          <Photos name="KAMOGAWA 鴨川" src="kyoto/kamogawa" />
-          <Photos name="YOSHIDA-JINJA 吉田神社" src="kyoto/yoshida" />
-        </section>
+        <Kyoto/>
         <style jsx>{`
       section.splash {
         width: 100%;
@@ -153,20 +156,6 @@ class Index extends React.Component {
         background-color: initial;
         cursor: pointer;
         border: none;
-      }
-      .photo-container {
-        margin: 150px 20px;
-      }
-      h2 {
-        text-align: center;
-        font-size: 5vw;
-        margin: 30px 0;
-      }
-      .desc {
-        text-align: center;
-        font-size: 2.5vw;
-        font-weight: 300;
-        color: #999;
       }
     `}</style>
       </Layout>
