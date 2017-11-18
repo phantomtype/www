@@ -19,7 +19,8 @@ class Photos extends React.Component {
     const self = this;
     axios.get('/hello', {
       params: {
-        d: props.src
+        c: props.c,
+        p: props.p
       }
     }).then(function (response) {
       self.setState({
@@ -61,7 +62,9 @@ class Photos extends React.Component {
 }
 
 Photos.propTypes = {
-  photos: PropTypes.object
+  photos: PropTypes.object,
+  c: PropTypes.string,
+  p: PropTypes.string
 };
 
 class Kyoto extends React.Component {
@@ -70,13 +73,13 @@ class Kyoto extends React.Component {
       <section className="photo-container">
         <h2>KYOTO 京都</h2>
         <p className="desc">THE HISTORY OF JAPAN.</p>
-        <Photos name="KIBUNE 貴船" src="kyoto/kibune" />
-        <Photos name="KURAMA 蔵馬" src="kyoto/kurama" />
-        <Photos name="NIJO-JO 二条城" src="kyoto/nijojo" />
-        <Photos name="SHIMOGAMO 下鴨" src="kyoto/shimogamo" />
-        <Photos name="KAMIGAMO 上賀茂" src="kyoto/kamigamo" />
-        <Photos name="KAMOGAWA 鴨川" src="kyoto/kamogawa" />
-        <Photos name="YOSHIDA-JINJA 吉田神社" src="kyoto/yoshida" />
+        <Photos name="KIBUNE 貴船" c="kyoto" p="kibune" />
+        <Photos name="KURAMA 蔵馬" c="kyoto" p="kurama" />
+        <Photos name="NIJO-JO 二条城" c="kyoto" p="nijojo" />
+        <Photos name="SHIMOGAMO 下鴨" c="kyoto" p="shimogamo" />
+        <Photos name="KAMIGAMO 上賀茂" c="kyoto" p="kamigamo" />
+        <Photos name="KAMOGAWA 鴨川" c="kyoto" p="kamogawa" />
+        <Photos name="YOSHIDA-JINJA 吉田神社" c="kyoto" p="yoshida" />
         <style jsx>{`
       .photo-container {
         margin: 150px 20px;

@@ -38,7 +38,7 @@ type Photo struct {
 func prepareHandler(w http.ResponseWriter, r *http.Request) {
 	ctx := appengine.NewContext(r)
 
-	bucketName := "phantomtype-180814.appspot.com"
+	const bucketName = "phantomtype-180814.appspot.com"
 
 	client, err := storage.NewClient(ctx)
 	if err != nil {
@@ -67,8 +67,6 @@ func prepareHandler(w http.ResponseWriter, r *http.Request) {
 			q := datastore.NewQuery("Photo").Filter("Name =", o.Name)
 			keys, _ := q.GetAll(ctx, &ps)
 
-			log.Print(len(ps))
-
 			var photo Photo
 			var key *datastore.Key
 			if len(ps) > 0 {
@@ -96,39 +94,15 @@ func prepareHandler(w http.ResponseWriter, r *http.Request) {
 
 func handler(w http.ResponseWriter, r *http.Request)  {
 	ctx := appengine.NewContext(r)
+	city := r.FormValue("c")
+	place := r.FormValue("p")
 
-	bucketName := "phantomtype-180814.appspot.com"
-
-	client, err := storage.NewClient(ctx)
-	if err != nil {
-		log.Fatalf("Failed to create client: %V", err)
-	}
-
-	bucket := client.Bucket(bucketName)
-
-	prefix := "photos/" + r.FormValue("d")
-
-	objects := bucket.Objects(ctx, &storage.Query{Delimiter: "", Prefix: prefix})
 	photos := []Photo{}
-	//for i := 0; i < 5; i++ {
-	for {
-		o, err := objects.Next()
-		if err == iterator.Done {
-			break
-		}
-		if err != nil {
-			return
-		}
-		log.Print(o)
-		if strings.HasSuffix(o.Name, "_g.jpg") {
-			//blob_key, _ := blobstore.BlobKeyForFile(ctx, "/gs/" + bucketName + "/" + o.Name)
-			//url, _ := image.ServingURL(ctx, blob_key, nil)
-			//photo := Photo{"",o.Name, o.Size, url.String()}
-			//photos = append(photos, photo)
-		}
-	}
+	q := datastore.NewQuery("Photo").Filter("City =", city).Filter("Place =", place)
+	q.GetAll(ctx, &photos)
+
 	result := Photos{Name:"hoge", Photos:photos}
-	j, err := json.Marshal(result)
+	j, _ := json.Marshal(result)
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	fmt.Fprint(w, string(j))
 }
