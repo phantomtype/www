@@ -17,7 +17,7 @@ class Photos extends React.Component {
       photos: []
     };
     const self = this;
-    axios.get('http://localhost:8080/hello', {
+    axios.get('/hello', {
       params: {
         d: props.src
       }
@@ -36,7 +36,8 @@ class Photos extends React.Component {
         <h3>{this.props.name}</h3>
         {
           this.state.photos.map((p, i) => {
-            const src = "https://storage.googleapis.com/phantomtype-180814.appspot.com/" + p.name;
+            // const src = "https://storage.googleapis.com/phantomtype-180814.appspot.com/" + p.name;
+            const src = p.url;
             return <PhotosA key={i} photo={p} src={src} align={i % 2} />;
           })
         }
