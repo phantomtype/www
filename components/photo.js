@@ -1,58 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import EXIF from "exif-js";
-
 class PhotosA extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      Model: "",
-      Make: "",
-      DateTime: "",
-      FNumber: "",
-      ISOSpeedRatings: "",
-      FocalLength: "",
-      FocalLengthIn35mmFilm: "",
-      ExposureTime: ""
-    };
-  }
-
-  imageOnLoad(...args) {
-    const [event, ..._] = args;
-    const imageElement: HTMLImageElement = event.target;
-
-    const windowImage = window.Image;
-    window.Image = null;
-
-    if (!EXIF.getData(imageElement, () => {
-        this.setState({
-          Make: EXIF.getTag(imageElement, "Make"),
-          Model: EXIF.getTag(imageElement, "Model"),
-          DateTime: EXIF.getTag(imageElement, "DateTimeOriginal"),
-          FNumber: EXIF.getTag(imageElement, "FNumber").toString(),
-          ISOSpeedRatings: EXIF.getTag(imageElement, "ISOSpeedRatings"),
-          FocalLength: EXIF.getTag(imageElement, "FocalLength").toString(),
-          FocalLengthIn35mmFilm: EXIF.getTag(imageElement, "FocalLengthIn35mmFilm").toString(),
-          ExposureTime: EXIF.getTag(imageElement, "ExposureTime"),
-        });
-      })) {
-    }
-
-    window.Image = windowImage;
   }
 
   render() {
+    const e = this.props.photo.Exif
     return (
       <div className={`photo-container align-${this.props.align}`}>
         <div className="photo">
-          <img src={this.props.src} onClick={this.imageOnLoad.bind(this)} onLoad={this.imageOnLoad.bind(this)} className="tmb"/>
+          <img src={this.props.src} className="tmb"/>
         </div>
         <div className="exif">
-          <span>{this.state.Make} {this.state.Model}</span>
-          <span>{this.state.DateTime}</span>
-          <span>{this.state.FocalLength}mm ({this.state.FocalLengthIn35mmFilm}mm) ／ F{this.state.FNumber} ／ {this.state.ExposureTime.numerator}/{this.state.ExposureTime.denominator}S</span>
-          <span>ISO {this.state.ISOSpeedRatings}</span>
+          <span>{e.Make} {e.Model}</span>
+          <span>{e.DateTime}</span>
+          <span>{e.FocalLength}mm ({e.FocalLengthIn35mmFilm}mm) ／ F{e.FNumber} ／ {e.ExposureTime}S</span>
+          <span>ISO {e.ISOSpeedRatings}</span>
         </div>
         <style jsx>{`
       div.photo-container {
