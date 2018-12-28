@@ -88,15 +88,13 @@ func prepareHandler(w http.ResponseWriter, r *http.Request) {
 			q := datastore.NewQuery("Photo").Filter("Name =", o.Name)
 			keys, _ := q.GetAll(ctx, &ps)
 
-			var photo Photo
 			var key *datastore.Key
 			if len(ps) > 0 {
 				key = keys[0]
-				photo = Photo{ key.String(),o.Name, city, place, o.Size, url.String(), exif}
 			} else {
 				key = datastore.NewIncompleteKey(ctx, "Photo", nil)
-				photo = Photo{ key.String(),o.Name, city, place, o.Size, url.String(), exif}
 			}
+			photo := Photo{ key.String(),o.Name, city, place, o.Size, url.String(), exif}
 
 			_, err := datastore.Put(ctx, key, &photo)
 			if err != nil {

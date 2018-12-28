@@ -76,12 +76,12 @@ class Kyoto extends React.Component {
         <h2>KYOTO 京都</h2>
         <p className="desc">THE HISTORY OF JAPAN.</p>
         <Photos name="KIBUNE 貴船" c="kyoto" p="kibune" />
-        {/*<Photos name="KURAMA 蔵馬" c="kyoto" p="kurama" />*/}
-        {/*<Photos name="NIJO-JO 二条城" c="kyoto" p="nijojo" />*/}
-        {/*<Photos name="SHIMOGAMO 下鴨" c="kyoto" p="shimogamo" />*/}
-        {/*<Photos name="KAMIGAMO 上賀茂" c="kyoto" p="kamigamo" />*/}
-        {/*<Photos name="KAMOGAWA 鴨川" c="kyoto" p="kamogawa" />*/}
-        {/*<Photos name="YOSHIDA-JINJA 吉田神社" c="kyoto" p="yoshida" />*/}
+        <Photos name="KURAMA 蔵馬" c="kyoto" p="kurama" />
+        <Photos name="NIJO-JO 二条城" c="kyoto" p="nijojo" />
+        <Photos name="SHIMOGAMO 下鴨" c="kyoto" p="shimogamo" />
+        <Photos name="KAMIGAMO 上賀茂" c="kyoto" p="kamigamo" />
+        <Photos name="KAMOGAWA 鴨川" c="kyoto" p="kamogawa" />
+        <Photos name="YOSHIDA-JINJA 吉田神社" c="kyoto" p="yoshida" />
         <style jsx>{`
       .photo-container {
         margin: 150px 20px;

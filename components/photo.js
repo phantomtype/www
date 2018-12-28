@@ -24,6 +24,7 @@ class PhotosA extends React.Component {
         margin: 90px 0;
         display: grid;
         grid-template-columns: 1fr 1fr;
+        height: 400px;
       }
       .align-0 .exif {
         grid-column: 2;
@@ -33,6 +34,11 @@ class PhotosA extends React.Component {
       .align-0 .photo {
         grid-column: 1;
         grid-row: 1;
+        position: relative;
+      }
+      .align-0 img {
+        position: absolute;
+        right: 0;
       }
       .align-1 .exif {
         grid-column: 1;
@@ -57,6 +63,7 @@ class PhotosA extends React.Component {
           margin: 20px 0;
           grid-template-columns: 1fr;
           grid-template-rows: auto;
+          height: 100%;
         }
         .align-0 .photo, .align-0 .exif,
         .align-1 .photo, .align-1 .exif {
@@ -65,6 +72,9 @@ class PhotosA extends React.Component {
         }
         img.tmb {
           width: 100%;
+        }
+        .align-0 img {
+          position: static;
         }
         .exif {
           margin: 5px 15px;
