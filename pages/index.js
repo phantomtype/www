@@ -69,6 +69,37 @@ Photos.propTypes = {
   p: PropTypes.string
 };
 
+class Kanazawa extends React.Component {
+  render() {
+    return (
+      <section className="photo-container">
+        <h2>KANAZAWA 金沢</h2>
+        <p className="desc">The Jewel of Japan.</p>
+        <Photos name="21st Century Museum" c="kanazawa" p="21stCenturyMuseum" />
+        <Photos name="HIGASHIYAMA 東山" c="kanazawa" p="higashiyama" />
+        <Photos name="KANAZAWA STATION 金沢駅" c="kanazawa" p="kanazawa-station" />
+        <Photos name="KANAZAWA-JO 金沢城" c="kanazawa" p="kanazawajo" />
+        <style jsx>{`
+      .photo-container {
+        margin: 150px 20px;
+      }
+      h2 {
+        text-align: center;
+        font-size: 5vw;
+        margin: 30px 0;
+      }
+      .desc {
+        text-align: center;
+        font-size: 2.5vw;
+        font-weight: 300;
+        color: #999;
+      }
+        `}</style>
+      </section>
+    );
+  }
+}
+
 class Kyoto extends React.Component {
   render() {
     return (
@@ -121,6 +152,7 @@ class Index extends React.Component {
           </div>
           <button onClick={this.scroll} className="arrow">▽</button>
         </section>
+        <Kanazawa/>
         <Kyoto/>
         <style jsx>{`
       section.splash {
