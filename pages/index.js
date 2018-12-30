@@ -49,7 +49,7 @@ class Place extends React.Component {
           margin: 120px 0;
         }
         h3 {
-          font-size: 3vw;
+          font-size: 4vw;
           text-transform: uppercase;
           margin: 0 10vw;
           color: #fff;
@@ -86,7 +86,7 @@ class City extends React.Component {
           h2 {
             color: #fff;
             text-align: center;
-            font-size: 5rem;
+            font-size: 6vw;
             margin: 60px 0 0 0;
           }
           .desc {

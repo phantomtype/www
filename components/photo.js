@@ -53,10 +53,9 @@ class Photo extends React.Component {
         margin: 0px 15px;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
-        height: 10vh;
+        justify-content: start;
         color: #ccc;
-        font-size: 1.5rem;
+        font-size: 2.5vw;
         font-weight: 300;
       }
       @media (max-width: 600px){
