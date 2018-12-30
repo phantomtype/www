@@ -7,9 +7,9 @@ import axios from "axios";
 import Head from "next/head";
 import Logomark from "../resouces/images/logomark-white.svg";
 
-import PhotosA from "../components/photo";
+import Photo from "../components/photo";
 
-class Photos extends React.Component {
+class Place extends React.Component {
 
   constructor(props) {
     super(props);
@@ -41,7 +41,7 @@ class Photos extends React.Component {
           this.state.photos.map((p, i) => {
             // const src = "https://storage.googleapis.com/phantomtype-180814.appspot.com/" + p.name;
             const src = p.url;
-            return <PhotosA key={i} photo={p} src={src} align={i % 2} />;
+            return <Photo key={i} photo={p} src={src} align={i % 2} />;
           })
         }
         <style jsx>{`
@@ -65,7 +65,7 @@ class Photos extends React.Component {
   }
 }
 
-Photos.propTypes = {
+Place.propTypes = {
   photos: PropTypes.object,
   c: PropTypes.string,
   p: PropTypes.string,
@@ -134,19 +134,19 @@ class Index extends React.Component {
           <button onClick={this.scroll} className="arrow">▽</button>
         </section>
         <City city={`KANAZAWA 金沢`} description={`The Jewel of Japan`}>
-          <Photos name="21st Century Museum" c="kanazawa" p="21stCenturyMuseum" />
-          <Photos name="HIGASHIYAMA 東山" c="kanazawa" p="higashiyama" />
-          <Photos name="KANAZAWA STATION 金沢駅" c="kanazawa" p="kanazawa-station" />
-          <Photos name="KANAZAWA-JO 金沢城" c="kanazawa" p="kanazawajo" />
+          <Place name="21st Century Museum" c="kanazawa" p="21stCenturyMuseum" />
+          <Place name="HIGASHIYAMA 東山" c="kanazawa" p="higashiyama" />
+          <Place name="KANAZAWA STATION 金沢駅" c="kanazawa" p="kanazawa-station" />
+          <Place name="KANAZAWA-JO 金沢城" c="kanazawa" p="kanazawajo" />
         </City>
         <City city={`KYOTO 京都`} description={`The History of Japan`}>
-          <Photos name="KIBUNE 貴船" c="kyoto" p="kibune" />
-          <Photos name="KURAMA 蔵馬" c="kyoto" p="kurama" />
-          <Photos name="NIJO-JO 二条城" c="kyoto" p="nijojo" />
-          <Photos name="SHIMOGAMO 下鴨" c="kyoto" p="shimogamo" />
-          <Photos name="KAMIGAMO 上賀茂" c="kyoto" p="kamigamo" />
-          <Photos name="KAMOGAWA 鴨川" c="kyoto" p="kamogawa" />
-          <Photos name="YOSHIDA-JINJA 吉田神社" c="kyoto" p="yoshida" />
+          <Place name="KIBUNE 貴船" c="kyoto" p="kibune" />
+          <Place name="KURAMA 蔵馬" c="kyoto" p="kurama" />
+          <Place name="NIJO-JO 二条城" c="kyoto" p="nijojo" />
+          <Place name="SHIMOGAMO 下鴨" c="kyoto" p="shimogamo" />
+          <Place name="KAMIGAMO 上賀茂" c="kyoto" p="kamigamo" />
+          <Place name="KAMOGAWA 鴨川" c="kyoto" p="kamogawa" />
+          <Place name="YOSHIDA-JINJA 吉田神社" c="kyoto" p="yoshida" />
         </City>
         <style jsx>{`
       section.splash {
