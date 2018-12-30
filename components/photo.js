@@ -7,7 +7,7 @@ class Photo extends React.Component {
   }
 
   render() {
-    const e = this.props.photo.Exif
+    const e = this.props.photo.Exif;
     return (
       <div className={`photo-container align-${this.props.align}`}>
         <div className="photo">
@@ -56,7 +56,7 @@ class Photo extends React.Component {
         justify-content: start;
         color: #ccc;
         font-size: 2.5vw;
-        font-weight: 300;
+        font-weight: 200;
       }
       @media (max-width: 600px){
         div.photo-container {
