@@ -14,8 +14,9 @@ export default (props) => (
     <footer>(C) PHANTOM TYPE.   <a href="https://twitter.com/phantomtype" rel="noopener noreferrer" target="_blank">Contact us</a></footer>
     <style jsx global>{`
       body {
-        font-family: 'Noto Sans JP', sans-serif;
+        font-family: 'Noto Sans JP', Helvetica, sans-serif;
         font-size: 100%;
+        background: #000;
       }
       svg.logo {
         width: 25vw;

@@ -51,6 +51,8 @@ class Photos extends React.Component {
         h3 {
           font-size: 3vw;
           text-transform: uppercase;
+          margin: 0 10vw;
+          color: #fff;
         }
         @media (max-width: 600px){
           section.photo-container {
@@ -82,15 +84,16 @@ class PhotoContainer extends React.Component {
             margin: 150px 20px;
           }
           h2 {
+            color: #fff;
             text-align: center;
-            font-size: 5vw;
-            margin: 30px 0;
+            font-size: 5rem;
+            margin: 60px 0 0 0;
           }
           .desc {
             text-align: center;
             font-size: 2.5vw;
             font-weight: 300;
-            color: #999;
+            color: #ddd;
           }
           `}</style>
       </section>

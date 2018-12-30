@@ -21,7 +21,7 @@ class PhotosA extends React.Component {
         </div>
         <style jsx>{`
       div.photo-container {
-        margin: 90px 0;
+        margin: 60px 0;
         display: grid;
         grid-template-columns: 1fr 1fr;
         height: 400px;
@@ -50,13 +50,14 @@ class PhotosA extends React.Component {
         grid-row: 2;
       }
       .exif {
-        margin: 20px 15px;
+        margin: 0px 15px;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         height: 10vh;
-        color: #999;
-        font-size: 85%;
+        color: #ccc;
+        font-size: 1.5rem;
+        font-weight: 300;
       }
       @media (max-width: 600px){
         div.photo-container {
