@@ -12,7 +12,7 @@ import PhotosA from "../components/photo";
 class Photos extends React.Component {
 
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       photos: []
     };
@@ -72,7 +72,7 @@ Photos.propTypes = {
   name: PropTypes.string
 };
 
-class PhotoContainer extends React.Component {
+class City extends React.Component {
   render() {
     return (
       <section className="photo-container">
@@ -101,14 +101,15 @@ class PhotoContainer extends React.Component {
   }
 }
 
-PhotoContainer.propTypes = {
+City.propTypes = {
   city: PropTypes.string,
-  description: PropTypes.string
-}
+  description: PropTypes.string,
+  children: PropTypes.object
+};
 
 class Index extends React.Component {
   scroll() {
-    var scroll = Scroll.animateScroll;
+    const scroll = Scroll.animateScroll;
     scroll.scrollTo(screen.height, {duration: 500, delay: 100, smooth: true});
   }
 
@@ -132,13 +133,13 @@ class Index extends React.Component {
           </div>
           <button onClick={this.scroll} className="arrow">▽</button>
         </section>
-        <PhotoContainer city={`KANAZAWA 金沢`} description={`The Jewel of Japan`}>
+        <City city={`KANAZAWA 金沢`} description={`The Jewel of Japan`}>
           <Photos name="21st Century Museum" c="kanazawa" p="21stCenturyMuseum" />
           <Photos name="HIGASHIYAMA 東山" c="kanazawa" p="higashiyama" />
           <Photos name="KANAZAWA STATION 金沢駅" c="kanazawa" p="kanazawa-station" />
           <Photos name="KANAZAWA-JO 金沢城" c="kanazawa" p="kanazawajo" />
-        </PhotoContainer>
-        <PhotoContainer city={`KYOTO 京都`} description={`The History of Japan`}>
+        </City>
+        <City city={`KYOTO 京都`} description={`The History of Japan`}>
           <Photos name="KIBUNE 貴船" c="kyoto" p="kibune" />
           <Photos name="KURAMA 蔵馬" c="kyoto" p="kurama" />
           <Photos name="NIJO-JO 二条城" c="kyoto" p="nijojo" />
@@ -146,7 +147,7 @@ class Index extends React.Component {
           <Photos name="KAMIGAMO 上賀茂" c="kyoto" p="kamigamo" />
           <Photos name="KAMOGAWA 鴨川" c="kyoto" p="kamogawa" />
           <Photos name="YOSHIDA-JINJA 吉田神社" c="kyoto" p="yoshida" />
-        </PhotoContainer>
+        </City>
         <style jsx>{`
       section.splash {
         width: 100%;
