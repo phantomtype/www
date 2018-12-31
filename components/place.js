@@ -41,6 +41,9 @@ export default class Place extends React.Component {
         <style jsx>{`
         .Place {
           margin: 160px 0;
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-gap: 60px;
         }
         @media (max-width: 600px){
           .Place {

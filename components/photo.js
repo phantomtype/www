@@ -9,10 +9,8 @@ class Photo extends React.Component {
   render() {
     const e = this.props.photo.Exif;
     return (
-      <div className={`Photo align-${this.props.align}`}>
-        <div className="photo">
-          <img src={this.props.src} className="tmb"/>
-        </div>
+      <div className={`Photo`}>
+          <img src={this.props.src} />
         <div className="exif">
           <span className="Place">{this.props.place}</span>
           <span>{e.Make} {e.Model}</span>
@@ -22,33 +20,10 @@ class Photo extends React.Component {
         </div>
         <style jsx>{`
       .Photo {
-        margin: 40px 0;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        min-height: 370px;
-      }
-      .align-0 .exif {
-        grid-column: 2;
-        grid-row: 1;
-        text-align: left;
-      }
-      .align-0 .photo {
-        grid-column: 1;
-        grid-row: 1;
-        position: relative;
-      }
-      .align-0 img {
-        position: absolute;
-        right: 0;
-      }
-      .align-1 .exif {
-        grid-column: 1;
-        grid-row: 2;
-        text-align: right;
-      }
-      .align-1 .photo {
-        grid-column: 2;
-        grid-row: 2;
+        display: flex;
+        flex-direction: ${this.props.align == 0 ? "row": "row-reverse"};
+        justify-content: flex-start;
+        margin: 0 5vw;
       }
       .Place {
         font-weight: 300;
@@ -56,34 +31,25 @@ class Photo extends React.Component {
         margin-bottom: 10px;
       }
       .exif {
-        margin: 0px 15px;
+        margin: 0 15px;
         display: flex;
         flex-direction: column;
         justify-content: start;
+        text-align: ${this.props.align == 0 ? "left": "right"};
         color: #ccc;
         font-size: 1.0rem;
         font-weight: 200;
       }
       @media (max-width: 600px){
         .Photo {
-          margin: 40px 0;
-          grid-template-columns: 1fr;
-          grid-template-rows: auto;
-          height: 100%;
+          flex-direction: column;
+          margin: 0;
         }
-        .align-0 .photo, .align-0 .exif,
-        .align-1 .photo, .align-1 .exif {
-          grid-column: 1;
-          grid-row: auto;
-        }
-        img.tmb {
+        img {
           width: 100%;
         }
-        .align-0 img {
-          position: static;
-        }
         .exif {
-          margin: 5px 15px;
+          margin: 5px 0;
         }
       }
     `}</style>
