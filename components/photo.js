@@ -9,22 +9,23 @@ class Photo extends React.Component {
   render() {
     const e = this.props.photo.Exif;
     return (
-      <div className={`photo-container align-${this.props.align}`}>
+      <div className={`Photo align-${this.props.align}`}>
         <div className="photo">
           <img src={this.props.src} className="tmb"/>
         </div>
         <div className="exif">
+          <span className="Place">{this.props.place}</span>
           <span>{e.Make} {e.Model}</span>
           <span>{e.DateTime}</span>
           <span>{e.FocalLength}mm ({e.FocalLengthIn35mmFilm}mm) ／ F{e.FNumber} ／ {e.ExposureTime}S</span>
           <span>ISO {e.ISOSpeedRatings}</span>
         </div>
         <style jsx>{`
-      div.photo-container {
-        margin: 60px 0;
+      .Photo {
+        margin: 40px 0;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        height: 400px;
+        min-height: 370px;
       }
       .align-0 .exif {
         grid-column: 2;
@@ -49,18 +50,23 @@ class Photo extends React.Component {
         grid-column: 2;
         grid-row: 2;
       }
+      .Place {
+        font-weight: 300;
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+      }
       .exif {
         margin: 0px 15px;
         display: flex;
         flex-direction: column;
         justify-content: start;
         color: #ccc;
-        font-size: 2.5vw;
+        font-size: 1.0rem;
         font-weight: 200;
       }
       @media (max-width: 600px){
-        div.photo-container {
-          margin: 20px 0;
+        .Photo {
+          margin: 40px 0;
           grid-template-columns: 1fr;
           grid-template-rows: auto;
           height: 100%;

@@ -30,28 +30,20 @@ export default class Place extends React.Component {
 
   render() {
     return (
-      <section className="photo-container">
-        <h3>{this.props.name}</h3>
+      <section className="Place">
         {
           this.state.photos.map((p, i) => {
             // const src = "https://storage.googleapis.com/phantomtype-180814.appspot.com/" + p.name;
             const src = p.url;
-            return <Photo key={i} photo={p} src={src} align={i % 2} />;
+            return <Photo place={this.props.name} key={i} photo={p} src={src} align={i % 2} />;
           })
         }
         <style jsx>{`
-        section.photo-container {
-          margin: 120px 0;
-        }
-        h3 {
-          font-size: 4vw;
-          font-weight: 200;
-          text-transform: uppercase;
-          margin: 0 10vw;
-          color: #fff;
+        .Place {
+          margin: 160px 0;
         }
         @media (max-width: 600px){
-          section.photo-container {
+          .Place {
             margin: 20px 0;
           }
         }
