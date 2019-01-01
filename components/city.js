@@ -15,13 +15,13 @@ export default class City extends React.Component {
           h2 {
             color: #fff;
             text-align: center;
-            font-size: 4.5rem;
+            font-size: 2.5rem;
             font-weight: 200;
             margin: 60px 0 0 0;
           }
           .desc {
             text-align: center;
-            font-size: 2.0rem;
+            font-size: 1.6rem;
             font-weight: 200;
             color: #ddd;
           }
