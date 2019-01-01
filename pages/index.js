@@ -17,12 +17,12 @@ class Index extends React.Component {
 
   scroll() {
     const scroll = Scroll.animateScroll;
-    scroll.scrollTo(screen.height, {duration: 500, delay: 100, smooth: true});
+    scroll.scrollTo(screen.height - 100, {duration: 400, delay: 200, smooth: true});
   }
 
   clickCity(city) {
-    console.log(city)
     this.setState({cities: [city]});
+    this.scroll();
   }
 
   render () {
@@ -43,7 +43,6 @@ class Index extends React.Component {
             <Logomark className="logo" />
             <h1>PHANTOM TYPE </h1>
           </div>
-          <button onClick={this.scroll} className="arrow">▽</button>
         </section>
         <section className="SelectCity">
           <button type="button" onClick={this.clickCity.bind(this, 'kyoto')}>KYOTO</button>
@@ -107,34 +106,24 @@ class Index extends React.Component {
         font-size: 5.52768vw;
         font-weight: 200;
       }
-      button.arrow {
-        background-color: initial;
-        cursor: pointer;
-        border: none;
-
+      .SelectCity {
+        display: inline-flex;
+        flex-direction: row;
         position: absolute;
-        font-size: 4vw;
         bottom: 10vh;
         left: 50%;
-        color: #fff;
-        text-decoration: none;
-        cursor: pointer;
-        transform: translate3d(-50%, 0, 0);
-      }
-      .SelectCity {
-        margin: 6vw 8vh;
-        display: flex;
-        justify-content: space-around;
+        transform: translate3d(-50%, -60%, 0);
+        justify-content: center;
       }
       .SelectCity button {
-        background-color: #000;
+        background-color: transparent;
         color: #fff;
         padding: 15px 5vw;
 
         cursor: pointer;
       }
       .SelectCity button:hover {
-        background-color: #222;
+        background-color: #000;
       }
     `}</style>
         <footer>(C) PHANTOM TYPE.   <a href="https://twitter.com/phantomtype" rel="noopener noreferrer" target="_blank">Contact us</a></footer>

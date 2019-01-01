@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 export default class City extends React.Component {
   render() {
     return (
-      <section className="City">
+      <section className={`City`}>
         <h2>{this.props.city}</h2>
         <p className="desc">{this.props.description}</p>
         {this.props.children}
@@ -39,5 +39,5 @@ export default class City extends React.Component {
 City.propTypes = {
   city: PropTypes.string,
   description: PropTypes.string,
-  children: PropTypes.object
+  children: PropTypes.objectOf(City)
 };
