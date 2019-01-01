@@ -122,14 +122,14 @@ class Index extends React.Component {
         transform: translate3d(-50%, 0, 0);
       }
       .SelectCity {
-        margin: 60px;
+        margin: 6vw 8vh;
         display: flex;
         justify-content: space-around;
       }
       .SelectCity button {
         background-color: #000;
         color: #fff;
-        padding: 15px 30px;
+        padding: 15px 5vw;
 
         cursor: pointer;
       }
