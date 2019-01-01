@@ -49,7 +49,7 @@ class Photo extends React.Component {
           width: 100%;
         }
         .exif {
-          margin: 5px 0;
+          margin: 5px 10px;
         }
       }
     `}</style>

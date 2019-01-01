@@ -25,6 +25,11 @@ export default class City extends React.Component {
             font-weight: 200;
             color: #ddd;
           }
+          @media (max-width: 600px){
+            .City {
+              margin: 50px 0;
+            }
+          }
           `}</style>
       </section>
     );
