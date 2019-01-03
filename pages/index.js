@@ -9,6 +9,7 @@ import Logomark from "../resouces/images/logomark-white.svg";
 import Place from "../components/place";
 import City from "../components/city";
 
+
 class Index extends React.Component {
   constructor(props) {
     super(props);
@@ -23,6 +24,37 @@ class Index extends React.Component {
   clickCity(city) {
     this.setState({cities: [city]});
     this.scroll();
+  }
+
+  SelectCity(top=false) {
+    return <section className={`SelectCity ${top ? 'Top': ''}`}>
+      <button type="button" onClick={this.clickCity.bind(this, 'kyoto')}>KYOTO</button>
+      <button type="button" onClick={this.clickCity.bind(this, 'kanazawa')}>KANAZAWA</button>
+      <button type="button" onClick={this.clickCity.bind(this, 'nagoya')}>NAGOYA</button>
+      <style jsx>{`
+      .SelectCity {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      }
+      .Top {
+        position: absolute;
+        left: 50%;
+        bottom: 10vh;
+        transform: translate3d(-50%, -60%, 0);
+      }
+      .SelectCity button {
+        background-color: transparent;
+        color: #fff;
+        padding: 15px 5vw;
+
+        cursor: pointer;
+      }
+      .SelectCity button:hover {
+        background-color: #000;
+      }
+`}</style>;
+    </section>;
   }
 
   render () {
@@ -44,11 +76,7 @@ class Index extends React.Component {
             <h1>PHANTOM TYPE </h1>
           </div>
         </section>
-        <section className="SelectCity">
-          <button type="button" onClick={this.clickCity.bind(this, 'kyoto')}>KYOTO</button>
-          <button type="button" onClick={this.clickCity.bind(this, 'kanazawa')}>KANAZAWA</button>
-          <button type="button" onClick={this.clickCity.bind(this, 'nagoya')}>NAGOYA</button>
-        </section>
+        {this.SelectCity(true)}
         {
           this.state.cities.indexOf('kanazawa') != -1 ?
             <City city={`KANAZAWA 金沢`} description={`The Jewel of Japan`}>
@@ -62,9 +90,16 @@ class Index extends React.Component {
         {
           this.state.cities.indexOf('kyoto') != -1 ?
             <City city={`KYOTO 京都`} description={`The History of Japan`}>
+              <Place name="fushimiinari 伏見稲荷" c="kyoto" p="fushimiinari" />
+              <Place name="gosyo 御所" c="kyoto" p="gosyo" />
+              <Place name="ryoanji 龍安寺" c="kyoto" p="ryoanji" />
               <Place name="KIBUNE 貴船" c="kyoto" p="kibune" />
               <Place name="KURAMA 蔵馬" c="kyoto" p="kurama" />
+              <Place name="byodoin 平等院" c="kyoto" p="byodoin" />
+              <Place name="higashihonganji 東本願寺" c="kyoto" p="higashihonganji" />
+              <Place name="syoseien 渉成園" c="kyoto" p="syoseien" />
               <Place name="NIJO-JO 二条城" c="kyoto" p="nijojo" />
+              <Place name="kiyomizu 清水" c="kyoto" p="kiyomizu" />
               <Place name="SHIMOGAMO 下鴨" c="kyoto" p="shimogamo" />
               <Place name="KAMIGAMO 上賀茂" c="kyoto" p="kamigamo" />
               <Place name="KAMOGAWA 鴨川" c="kyoto" p="kamogawa" />
@@ -80,6 +115,7 @@ class Index extends React.Component {
             </City>
             : null
         }
+        {this.SelectCity()}
         <style jsx>{`
       section.splash {
         width: 100%;
@@ -105,25 +141,6 @@ class Index extends React.Component {
         color: #fff;
         font-size: 5.52768vw;
         font-weight: 200;
-      }
-      .SelectCity {
-        display: inline-flex;
-        flex-direction: row;
-        position: absolute;
-        bottom: 10vh;
-        left: 50%;
-        transform: translate3d(-50%, -60%, 0);
-        justify-content: center;
-      }
-      .SelectCity button {
-        background-color: transparent;
-        color: #fff;
-        padding: 15px 5vw;
-
-        cursor: pointer;
-      }
-      .SelectCity button:hover {
-        background-color: #000;
       }
     `}</style>
         <footer>(C) PHANTOM TYPE.   <a href="https://twitter.com/phantomtype" rel="noopener noreferrer" target="_blank">Contact us</a></footer>
