@@ -31,6 +31,7 @@ class Index extends React.Component {
       <button type="button" onClick={this.clickCity.bind(this, 'kyoto')}>KYOTO</button>
       <button type="button" onClick={this.clickCity.bind(this, 'kanazawa')}>KANAZAWA</button>
       <button type="button" onClick={this.clickCity.bind(this, 'nagoya')}>NAGOYA</button>
+      <button type="button" onClick={this.clickCity.bind(this, 'matsushima')}>MATSUSHIMA</button>
       <style jsx>{`
       .SelectCity {
         display: flex;
@@ -46,14 +47,23 @@ class Index extends React.Component {
       .SelectCity button {
         background-color: transparent;
         color: #fff;
-        padding: 15px 5vw;
+        padding: 15px 3vw;
 
         cursor: pointer;
       }
       .SelectCity button:hover {
         background-color: #000;
       }
-`}</style>;
+      @media (max-width: 600px){
+        .SelectCity {
+          width: 100%;
+          bottom: 0;
+          left: 0;
+          transform: none;
+          flex-direction: column;
+        }
+      }
+`}</style>
     </section>;
   }
 
@@ -112,6 +122,14 @@ class Index extends React.Component {
             <City city={`NAGOYA 名古屋`} description={`The Center of Japan`}>
               <Place name="SAKAE 栄" c="nagoya" p="sakae" />
               <Place name="HOSHIGAOKA 星ヶ丘" c="nagoya" p="hoshigaoka" />
+            </City>
+            : null
+        }
+        {
+          this.state.cities.indexOf('matsushima') != -1 ?
+            <City city={`MATSUHIMA 松島`} description={`A Spot of the NIHON SANKEI`}>
+              <Place name="FUKUURAJIMA 福浦島" c="matsushima" p="fukuurajima" />
+              <Place name="entuuin 円通院" c="matsushima" p="entuuin" />
             </City>
             : null
         }
