@@ -50,6 +50,10 @@ type Exif struct {
 	FocalLength string `json:"FocalLength"`
 	FocalLengthIn35mmFilm string `json:"FocalLengthIn35mmFilm"`
 	ExposureTime string `json:"ExposureTime"`
+	//ExposureMode string `json:"ExposureMode"`
+	//WhiteBalance string `json:"WhiteBalance"`
+	//LensModel string `json:"LensModel"`
+	//LensMake string `json:"LensMake"`
 }
 
 func prepareHandler(w http.ResponseWriter, r *http.Request) {
@@ -121,12 +125,16 @@ func extractExif(reader io.Reader) Exif {
 
 	Model, _ := r.Get(exif.Model)
 	Make, _ := r.Get(exif.Make)
-	DateTime, _ := r.Get(exif.DateTime)
+	DateTime, _ := r.Get(exif.DateTimeOriginal)
 	FNumber, _ := r.Get(exif.FNumber)
 	ISOSpeedRatings, _ := r.Get(exif.ISOSpeedRatings)
 	FocalLength, _ := r.Get(exif.FocalLength)
 	FocalLengthIn35mmFilm, _ := r.Get(exif.FocalLengthIn35mmFilm)
 	ExposureTime, _ := r.Get(exif.ExposureTime)
+	//ExposureMode, _ := r.Get(exif.ExposureMode)
+	//WhiteBalance, _ := r.Get(exif.WhiteBalance)
+	//LensMake, _ := r.Get(exif.LensMake)
+	//LensModel, _ := r.Get(exif.LensModel)
 
 	model, _ := Model.StringVal()
 	make, _ := Make.StringVal()
@@ -136,6 +144,10 @@ func extractExif(reader io.Reader) Exif {
 	focallength, _ := FocalLength.Rat(0)
 	focallength35, _ := FocalLengthIn35mmFilm.Int(0)
 	exposuretime, _ := ExposureTime.Rat(0)
+	//exposuremode, _ := ExposureMode.Rat(0)
+	//whitebalance, _ := WhiteBalance.Rat(0)
+	//lensmake, _ := LensMake.StringVal()
+	//lensmodel, _ := LensModel.StringVal()
 
 	return Exif{
 		model,
@@ -146,6 +158,10 @@ func extractExif(reader io.Reader) Exif {
 		fmt.Sprintf("%v", focallength.FloatString(0)),
 		fmt.Sprintf("%v", focallength35),
 		fmt.Sprintf("%v", exposuretime.RatString()),
+		//fmt.Sprintf(exposuremode.RatString()),
+		//fmt.Sprintf(whitebalance.RatString()),
+		//lensmake,
+		//lensmodel,
 	}
 }
 
