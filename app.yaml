@@ -69,4 +69,5 @@ skip_files:
   - ^build/.*
   - ^components/.*
   - ^pages/.*
+  - ^exif_parse_dev/.*
 

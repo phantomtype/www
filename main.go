@@ -2,7 +2,6 @@ package phantomtype
 
 import (
 	"fmt"
-	"log"
 	"strings"
 
 	"encoding/json"
@@ -14,6 +13,7 @@ import (
 	"google.golang.org/appengine/image"
 	"google.golang.org/appengine/blobstore"
 	"google.golang.org/appengine/datastore"
+	"google.golang.org/appengine/log"
 )
 
 func init() {
@@ -43,12 +43,15 @@ func prepareHandler(w http.ResponseWriter, r *http.Request) {
 
 	client, err := storage.NewClient(ctx)
 	if err != nil {
-		log.Fatalf("Failed to create client: %V", err)
+		log.Errorf(ctx, "Failed to create client: %V", err)
 	}
+
 
 	bucket := client.Bucket(bucketName)
 	city := r.FormValue("c")
 	place := r.FormValue("p")
+
+	log.Infof(ctx, "Hello appengine!!")
 
 	objects := bucket.Objects(ctx, &storage.Query{Delimiter: "", Prefix: "photos/" + city + "/" + place})
 	photos := []Photo{}
@@ -79,10 +82,11 @@ func prepareHandler(w http.ResponseWriter, r *http.Request) {
 				key = datastore.NewIncompleteKey(ctx, "Photo", nil)
 			}
 			photo := Photo{ key.String(),o.Name, city, place, o.Size, url.String(), exif}
+			log.Debugf(ctx, "%V", photo)
 
 			_, err := datastore.Put(ctx, key, &photo)
 			if err != nil {
-				log.Fatalf("Failed to put datastore: %V", err)
+				log.Errorf(ctx, "Failed to put datastore: %V", err)
 				break
 			}
 
