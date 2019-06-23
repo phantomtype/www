@@ -1,9 +1,9 @@
-package phantomtype
+package main
 
 import (
 	"fmt"
-	"strings"
 	"log"
+	"strings"
 
 	"encoding/json"
 	"net/http"
@@ -14,11 +14,6 @@ import (
 	"google.golang.org/appengine/image"
 	"google.golang.org/appengine/blobstore"
 	"google.golang.org/appengine/datastore"
-
-	"github.com/xor-gate/goexif2/exif"
-	"io"
-	"io/ioutil"
-	"bytes"
 )
 
 func init() {
@@ -39,21 +34,6 @@ type Photo struct {
 	Size int64  `json:"size"`
 	Url string  `json:"url"`
 	Exif Exif `json:exif`
-}
-
-type Exif struct {
-	Model string `json:"Model"`
-	Make string `json:"Make"`
-	DateTime string `json:"DateTime"`
-	FNumber string `json:"FNumber"`
-	ISOSpeedRatings string `json:"ISOSpeedRatings"`
-	FocalLength string `json:"FocalLength"`
-	FocalLengthIn35mmFilm string `json:"FocalLengthIn35mmFilm"`
-	ExposureTime string `json:"ExposureTime"`
-	//ExposureMode string `json:"ExposureMode"`
-	//WhiteBalance string `json:"WhiteBalance"`
-	//LensModel string `json:"LensModel"`
-	//LensMake string `json:"LensMake"`
 }
 
 func prepareHandler(w http.ResponseWriter, r *http.Request) {
@@ -115,55 +95,6 @@ func prepareHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, string(j))
 }
 
-func extractExif(reader io.Reader) Exif {
-	bs, _ := ioutil.ReadAll(reader)
-	r, err := exif.Decode(bytes.NewReader(bs))
-	if err != nil {
-		log.Fatalf("Failed to decode exif: %v", err)
-		return Exif{}
-	}
-
-	Model, _ := r.Get(exif.Model)
-	Make, _ := r.Get(exif.Make)
-	DateTime, _ := r.Get(exif.DateTimeOriginal)
-	FNumber, _ := r.Get(exif.FNumber)
-	ISOSpeedRatings, _ := r.Get(exif.ISOSpeedRatings)
-	FocalLength, _ := r.Get(exif.FocalLength)
-	FocalLengthIn35mmFilm, _ := r.Get(exif.FocalLengthIn35mmFilm)
-	ExposureTime, _ := r.Get(exif.ExposureTime)
-	//ExposureMode, _ := r.Get(exif.ExposureMode)
-	//WhiteBalance, _ := r.Get(exif.WhiteBalance)
-	//LensMake, _ := r.Get(exif.LensMake)
-	//LensModel, _ := r.Get(exif.LensModel)
-
-	model, _ := Model.StringVal()
-	make, _ := Make.StringVal()
-	datetime, _ := DateTime.StringVal()
-	fnumber, _ := FNumber.Rat(0)
-	iso, _ := ISOSpeedRatings.Int(0)
-	focallength, _ := FocalLength.Rat(0)
-	focallength35, _ := FocalLengthIn35mmFilm.Int(0)
-	exposuretime, _ := ExposureTime.Rat(0)
-	//exposuremode, _ := ExposureMode.Rat(0)
-	//whitebalance, _ := WhiteBalance.Rat(0)
-	//lensmake, _ := LensMake.StringVal()
-	//lensmodel, _ := LensModel.StringVal()
-
-	return Exif{
-		model,
-		make,
-		datetime,
-		fnumber.FloatString(1),
-		fmt.Sprintf("%v", iso),
-		fmt.Sprintf("%v", focallength.FloatString(0)),
-		fmt.Sprintf("%v", focallength35),
-		fmt.Sprintf("%v", exposuretime.RatString()),
-		//fmt.Sprintf(exposuremode.RatString()),
-		//fmt.Sprintf(whitebalance.RatString()),
-		//lensmake,
-		//lensmodel,
-	}
-}
 
 func handler(w http.ResponseWriter, r *http.Request)  {
 	ctx := appengine.NewContext(r)
