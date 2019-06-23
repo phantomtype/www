@@ -1,4 +1,4 @@
-package main
+package phantomtype
 
 import (
 	"fmt"
@@ -65,7 +65,7 @@ func prepareHandler(w http.ResponseWriter, r *http.Request) {
 			url, _ := image.ServingURL(ctx, blob_key, nil)
 
 			reader, _ := bucket.Object(o.Name).NewReader(ctx)
-			exif := extractExif(reader)
+			exif := ExtractExif(reader)
 			defer reader.Close()
 
 			var ps []Photo

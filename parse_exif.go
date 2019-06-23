@@ -1,13 +1,11 @@
-package main
+package phantomtype
 
 import (
-	"flag"
 	"fmt"
 	"github.com/dsoprea/go-exif"
 	"io"
 	"io/ioutil"
 	"github.com/dsoprea/go-logging"
-	"os"
     "github.com/mitchellh/mapstructure"
 )
 
@@ -70,7 +68,7 @@ type Exif struct {
 	LensSerialNumber string `json:"LensSerialNumber"`
 }
 
-func extractExif(reader io.Reader) Exif {
+func ExtractExif(reader io.Reader) Exif {
 	bs, _ := ioutil.ReadAll(reader)
 	rawExif, err := exif.SearchAndExtractExif(bs)
 	log.PanicIf(err)
@@ -142,28 +140,5 @@ func extractExif(reader io.Reader) Exif {
 	mapstructure.Decode(resultData, &result)
 
 	return result
-}
-
-
-var (
-	filepathArg     = ""
-)
-
-// driver for develop
-func main() {
-	flag.StringVar(&filepathArg, "filepath", "", "File-path of image")
-	flag.Parse()
-
-	if filepathArg == "" {
-		fmt.Printf("Please provide a file-path for an image.\n")
-		os.Exit(1)
-	}
-
-	f, err := os.Open(filepathArg)
-	log.PanicIf(err)
-
-	exif := extractExif(f)
-
-	fmt.Printf("%v", exif)
 }
 
