@@ -27,6 +27,6 @@ func main() {
 
 	exif := phantomtype.ExtractExif(f)
 
-	fmt.Printf("%v", exif)
+	fmt.Printf("%+v", exif)
 }
 

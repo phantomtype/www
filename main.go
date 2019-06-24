@@ -51,8 +51,6 @@ func prepareHandler(w http.ResponseWriter, r *http.Request) {
 	city := r.FormValue("c")
 	place := r.FormValue("p")
 
-	log.Infof(ctx, "Hello appengine!!")
-
 	objects := bucket.Objects(ctx, &storage.Query{Delimiter: "", Prefix: "photos/" + city + "/" + place})
 	photos := []Photo{}
 	for {
@@ -82,7 +80,7 @@ func prepareHandler(w http.ResponseWriter, r *http.Request) {
 				key = datastore.NewIncompleteKey(ctx, "Photo", nil)
 			}
 			photo := Photo{ key.String(),o.Name, city, place, o.Size, url.String(), exif}
-			log.Debugf(ctx, "%V", photo)
+			log.Debugf(ctx, "%+v", photo)
 
 			_, err := datastore.Put(ctx, key, &photo)
 			if err != nil {

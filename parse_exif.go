@@ -22,6 +22,18 @@ type IfdEntry struct {
 	ValueString string      `json:"value_string"`
 }
 
+// need to be "int" for GAE datastore
+type Rational struct {
+	Numerator int
+	Denominator int
+}
+
+// need to be "int" for GAE datastore
+type SignedRational struct {
+	Numerator int
+	Denominator int
+}
+
 type Exif struct {
 	Make string `json:"Make"`
 	Model string `json:"Model"`
@@ -31,26 +43,26 @@ type Exif struct {
 	Software string `json:"Software""`
 	DateTime string `json:"DateTime"`
 	ExifTag string `json:"ExifTag"`
-	ExposureTime string `json:"ExposureTime"`
-	FNumber string `json:"FNumber"`
+	ExposureTime Rational `json:"ExposureTime"`
+	FNumber Rational `json:"FNumber"`
 	ExposureProgram string `json:"ExposureProgram"`
 	ISOSpeedRatings string `json:"ISOSpeedRatings"`
 	SensitivityType string `json:"SensitivityType"`
 	ExifVersion string `json:"ExifVersion"`
 	DateTimeOriginal string `json:"DateTimeOriginal"`
 	DateTimeDigitized string `json:"DateTimeDigitized"`
-	ShutterSpeedValue string `json:"ShutterSpeedValue"`
-	ApertureValue string `json:"ApertureValue"`
-	BrightnessValue string `json:"BrightnessValue"`
-	ExposureBiasValue string `json:"ExposureBiasValue"`
-	MaxApertureValue string `json:"MaxApertureValue"`
+	ShutterSpeedValue SignedRational `json:"ShutterSpeedValue"`
+	ApertureValue Rational `json:"ApertureValue"`
+	BrightnessValue SignedRational `json:"BrightnessValue"`
+	ExposureBiasValue SignedRational `json:"ExposureBiasValue"`
+	MaxApertureValue Rational `json:"MaxApertureValue"`
 	MeteringMode string `json:"MeteringMode"`
 	LightSource string `json:"LightSource"`
 	Flash string `json:"Flash"`
-	FocalLength string `json:"FocalLength"`
+	FocalLength Rational `json:"FocalLength"`
 	ColorSpace string `json:"ColorSpace"`
-	FocalPlaneXResolution string `json:"FocalPlaneXResolution"`
-	FocalPlaneYResolution string `json:"FocalPlaneYResolution"`
+	FocalPlaneXResolution Rational `json:"FocalPlaneXResolution"`
+	FocalPlaneYResolution Rational `json:"FocalPlaneYResolution"`
 	FocalPlaneResolutionUnit string `json:"FocalPlaneResolutionUnit"`
 	SensingMethod string `json:"SensingMethod"`
 	FileSource string `json:"FileSource"`
@@ -62,7 +74,7 @@ type Exif struct {
 	SceneCaptureType string `json:"SceneCaptureType"`
 	Sharpness string `json:"Sharpness"`
 	SubjectDistanceRange string `json:"SubjectDistanceRange"`
-	LensSpecification string `json:"LensSpecification"`
+	LensSpecification Rational `json:"LensSpecification"`
 	LensMake string `json:"LensMake"`
 	LensModel string `json:"LensModel"`
 	LensSerialNumber string `json:"LensSerialNumber"`
@@ -78,7 +90,7 @@ func ExtractExif(reader io.Reader) Exif {
 
 	im.StripPathPhraseIndices("")
 	result := Exif{}
-	resultData := make(map[string]string)
+	resultData := make(map[string]interface{})
 
 	visitor := func(fqIfdPath string, ifdIndex int, tagId uint16, tagType exif.TagType, valueContext exif.ValueContext) (err error) {
 		defer func() {
@@ -112,6 +124,16 @@ func ExtractExif(reader io.Reader) Exif {
 			} else {
 				valueString = fmt.Sprintf("%v", value)
 			}
+		} else if tagType.Type() == exif.TypeRational {
+			valueA, err := tagType.ReadRationalValues(valueContext)
+			value = valueA[0]
+			log.PanicIf(err)
+			valueString = fmt.Sprintf("%v/%v", valueA[0].Numerator, valueA[0].Denominator)
+		} else if tagType.Type() == exif.TypeSignedRational {
+			valueA, err := tagType.ReadSignedRationalValues(valueContext)
+			value = valueA[0]
+			log.PanicIf(err)
+			valueString = fmt.Sprintf("%v/%v", valueA[0].Numerator, valueA[0].Denominator)
 		} else {
 			valueString, err = tagType.ResolveAsString(valueContext, true)
 			log.PanicIf(err)
@@ -130,7 +152,8 @@ func ExtractExif(reader io.Reader) Exif {
 			Value:value,
 			ValueString:valueString,
 		}
-		resultData[entry.TagName] = entry.ValueString
+		resultData[entry.TagName] = entry.Value
+		fmt.Printf("%+v\n", entry)
 
 		return nil
 	}
