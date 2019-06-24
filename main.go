@@ -49,9 +49,9 @@ func prepareHandler(w http.ResponseWriter, r *http.Request) {
 
 	bucket := client.Bucket(bucketName)
 	city := r.FormValue("c")
-	place := r.FormValue("p")
+	//place := r.FormValue("p")
 
-	objects := bucket.Objects(ctx, &storage.Query{Delimiter: "", Prefix: "photos/" + city + "/" + place})
+	objects := bucket.Objects(ctx, &storage.Query{Delimiter: "", Prefix: "photos/" + city})
 	photos := []Photo{}
 	for {
 		o, err := objects.Next()
@@ -62,6 +62,11 @@ func prepareHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		if strings.HasSuffix(o.Name, ".jpg") {
+			s := strings.Split(o.Name, "/")
+			city := s[1]
+			place := s[2]
+			log.Debugf(ctx, "city: %s, place: %s", city, place)
+
 			blob_key, _ := blobstore.BlobKeyForFile(ctx, "/gs/" + bucketName + "/" + o.Name)
 			url, _ := image.ServingURL(ctx, blob_key, nil)
 
@@ -101,10 +106,10 @@ func prepareHandler(w http.ResponseWriter, r *http.Request) {
 func handler(w http.ResponseWriter, r *http.Request)  {
 	ctx := appengine.NewContext(r)
 	city := r.FormValue("c")
-	place := r.FormValue("p")
+	//place := r.FormValue("p")
 
 	photos := []Photo{}
-	q := datastore.NewQuery("Photo").Filter("City =", city).Filter("Place =", place)
+	q := datastore.NewQuery("Photo").Filter("City =", city)
 	q.GetAll(ctx, &photos)
 
 	result := Photos{Name:"hoge", Photos:photos}

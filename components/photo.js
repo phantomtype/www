@@ -12,7 +12,7 @@ class Photo extends React.Component {
       <div className={`Photo`}>
           <img src={this.props.src} />
         <div className="exif">
-          <span className="Place">{this.props.place}</span>
+          <span className="Place">{this.props.photo.place}</span>
           <span>{e.Make} {e.Model}</span>
           <span>{e.DateTimeOriginal}</span>
           <span>{e.FocalLength.Numerator / e.FocalLength.Denominator} ({e.FocalLengthIn35mmFilm}mm) ／ F{e.FNumber.Numerator / e.FNumber.Denominator} ／ {e.ExposureTime.Numerator} / {e.ExposureTime.Denominator}S</span>
@@ -25,6 +25,10 @@ class Photo extends React.Component {
         flex-direction: ${this.props.align == 0 ? "row": "row-reverse"};
         justify-content: flex-start;
         margin: 0 5vw;
+      }
+      .Photo img {
+        max-width: 540px;
+        max-height: 540px;
       }
       .Place {
         font-weight: 300;
