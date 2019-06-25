@@ -4,6 +4,11 @@ import axios from "axios";
 
 import Photo from "../components/photo";
 
+function byDateTime(a, b) {
+  if (!a) return 1;
+  if (!b) return -1;
+  return a.Exif.DateTimeOriginal < b.Exif.DateTimeOriginal ? 1 : -1;
+}
 
 export default class City extends React.Component {
 
@@ -33,7 +38,7 @@ export default class City extends React.Component {
         <h2>{this.props.city}</h2>
         <p className="desc">{this.props.description}</p>
           {
-            this.state.photos.map((p, i) => {
+            this.state.photos.sort(byDateTime).map((p, i) => {
               // const src = "https://storage.googleapis.com/phantomtype-180814.appspot.com/" + p.name;
               const src = p.url;
               return <Photo key={i} photo={p} src={src} align={i % 2} />;
