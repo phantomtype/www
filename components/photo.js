@@ -15,7 +15,7 @@ class Photo extends React.Component {
           <span className="Place">{this.props.photo.place}</span>
           <span>{e.Make} {e.Model}</span>
           <span>{e.DateTimeOriginal}</span>
-          <span>{e.FocalLength.Numerator / e.FocalLength.Denominator} ({e.FocalLengthIn35mmFilm}mm) ／ F{e.FNumber.Numerator / e.FNumber.Denominator} ／ {e.ExposureTime.Numerator} / {e.ExposureTime.Denominator}S</span>
+          <span>{e.FocalLength.Numerator / e.FocalLength.Denominator}mm ({e.FocalLengthIn35mmFilm}mm) ／ F{e.FNumber.Numerator / e.FNumber.Denominator} ／ {e.ExposureTime.Numerator} / {e.ExposureTime.Denominator}S</span>
           <span>ISO {e.ISOSpeedRatings}</span>
           <span>{e.LensMake} {e.LensModel}</span>
         </div>
@@ -34,6 +34,7 @@ class Photo extends React.Component {
         font-weight: 300;
         font-size: 1.2rem;
         margin-bottom: 10px;
+        text-transform: capitalize;
       }
       .exif {
         margin: 0 15px;
