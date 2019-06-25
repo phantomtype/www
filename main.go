@@ -112,7 +112,6 @@ func prepareHandler(w http.ResponseWriter, r *http.Request) {
 func handler(w http.ResponseWriter, r *http.Request)  {
 	ctx := appengine.NewContext(r)
 	city := r.FormValue("c")
-	//place := r.FormValue("p")
 
 	photos := []Photo{}
 	q := datastore.NewQuery("Photo").Filter("City =", city)
