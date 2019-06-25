@@ -10,9 +10,9 @@ import (
 	"cloud.google.com/go/storage"
 	"google.golang.org/api/iterator"
 	"google.golang.org/appengine"
-	"google.golang.org/appengine/image"
 	"google.golang.org/appengine/blobstore"
 	"google.golang.org/appengine/datastore"
+	"google.golang.org/appengine/image"
 	"google.golang.org/appengine/log"
 )
 
@@ -49,7 +49,7 @@ func prepareHandler(w http.ResponseWriter, r *http.Request) {
 
 	bucket := client.Bucket(bucketName)
 	city := r.FormValue("c")
-	//place := r.FormValue("p")
+	force := r.FormValue("force")
 
 	objects := bucket.Objects(ctx, &storage.Query{Delimiter: "", Prefix: "photos/" + city})
 	photos := []Photo{}
@@ -62,17 +62,7 @@ func prepareHandler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		if strings.HasSuffix(o.Name, ".jpg") {
-			s := strings.Split(o.Name, "/")
-			city := s[1]
-			place := s[2]
-			log.Debugf(ctx, "city: %s, place: %s", city, place)
-
-			blob_key, _ := blobstore.BlobKeyForFile(ctx, "/gs/" + bucketName + "/" + o.Name)
-			url, _ := image.ServingURL(ctx, blob_key, nil)
-
-			reader, _ := bucket.Object(o.Name).NewReader(ctx)
-			exif := ExtractExif(reader)
-			defer reader.Close()
+			log.Debugf(ctx, "%s", o.Name)
 
 			var ps []Photo
 			q := datastore.NewQuery("Photo").Filter("Name =", o.Name)
@@ -80,10 +70,26 @@ func prepareHandler(w http.ResponseWriter, r *http.Request) {
 
 			var key *datastore.Key
 			if len(ps) > 0 {
+				if force != "true" {
+					log.Debugf(ctx, "skipped [%s]", ps[0].Url)
+					continue
+				}
 				key = keys[0]
 			} else {
 				key = datastore.NewIncompleteKey(ctx, "Photo", nil)
 			}
+
+			s := strings.Split(o.Name, "/")
+			city := s[1]
+			place := s[2]
+
+			blobKey, _ := blobstore.BlobKeyForFile(ctx, "/gs/" + bucketName + "/" + o.Name)
+			url, _ := image.ServingURL(ctx, blobKey, nil)
+
+			reader, _ := bucket.Object(o.Name).NewReader(ctx)
+			exif := ExtractExif(reader)
+			defer reader.Close()
+
 			photo := Photo{ key.String(),o.Name, city, place, o.Size, url.String(), exif}
 			log.Debugf(ctx, "%+v", photo)
 
