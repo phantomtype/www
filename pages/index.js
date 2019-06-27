@@ -12,6 +12,7 @@ class Index extends React.Component {
   constructor(props) {
     super(props);
     this.state = {cities: ["kyoto"]};
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
   scroll() {
@@ -24,8 +25,24 @@ class Index extends React.Component {
     this.scroll();
   }
 
-  SelectCity(top=false) {
-    return <section className={`SelectCity ${top ? 'Top': ''}`}>
+  handleScroll() {
+    this.setState({scroll: window.scrollY});
+  }
+
+  componentDidMount() {
+    const el = document.querySelector('.Top');
+    this.setState({top: el.offsetTop, height: el.offsetHeight});
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentDidUpdate() {
+    this.state.scroll > this.state.top ?
+      document.body.style.paddingTop = `${this.state.height}px`:
+      document.body.style.paddingTop = 0;
+  }
+
+  SelectCity() {
+    return <section className={`SelectCity Top ${this.state.scroll > this.state.top ? "fixed-nav" : ""}`}>
       <button type="button" onClick={this.clickCity.bind(this, 'kyoto')}>KYOTO</button>
       <button type="button" onClick={this.clickCity.bind(this, 'kanazawa')}>KANAZAWA</button>
       <button type="button" onClick={this.clickCity.bind(this, 'nagoya')}>NAGOYA</button>
@@ -41,6 +58,12 @@ class Index extends React.Component {
         left: 50%;
         bottom: 10vh;
         transform: translate3d(-50%, -60%, 0);
+      }
+      .Top.fixed-nav {
+        top: 5%;
+        position: fixed;
+        bottom: initial;
+        background-color: rgb(0, 0, 0, 0.4);
       }
       .SelectCity button {
         background-color: transparent;
@@ -59,6 +82,9 @@ class Index extends React.Component {
           left: 0;
           transform: none;
           flex-direction: column;
+        }
+        .Top.fixed-nav {
+          display: none;
         }
       }
 `}</style>
@@ -102,7 +128,6 @@ class Index extends React.Component {
           this.state.cities.indexOf('matsushima') != -1 ?
             <City city={`matsushima`} description={`A Spot of the NIHON SANKEI`} /> : null
         }
-        {this.SelectCity()}
         <style jsx>{`
       section.splash {
         width: 100%;
