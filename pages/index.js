@@ -69,24 +69,6 @@ class Index extends React.Component {
       .SelectCity button:hover {
         background-color: #000;
       }
-      @media (max-width: 600px){
-        .SelectCity {
-          width: 100%;
-          bottom: 0;
-          left: 0;
-          transform: none;
-          flex-direction: column;
-        }
-        .Top.fixed-nav {
-          top: 0%;
-          position: fixed;
-          bottom: initial;
-          background-color: rgb(0, 0, 0, 0.4);
-        }
-        .fixed-nav button {
-          padding: 5px 0;
-        }
-      }
 `}</style>
     </section>;
   }
