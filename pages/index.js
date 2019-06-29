@@ -17,7 +17,7 @@ class Index extends React.Component {
 
   scroll() {
     const scroll = Scroll.animateScroll;
-    scroll.scrollTo(screen.height - 100, {duration: 400, delay: 200, smooth: true});
+    scroll.scrollTo(screen.height - 100, {duration: 400, delay: 500, smooth: true});
   }
 
   clickCity(city) {
@@ -33,12 +33,6 @@ class Index extends React.Component {
     const el = document.querySelector('.Top');
     this.setState({top: el.offsetTop, height: el.offsetHeight});
     window.addEventListener('scroll', this.handleScroll);
-  }
-
-  componentDidUpdate() {
-    this.state.scroll > this.state.top ?
-      document.body.style.paddingTop = `${this.state.height}px`:
-      document.body.style.paddingTop = 0;
   }
 
   SelectCity() {
@@ -84,7 +78,13 @@ class Index extends React.Component {
           flex-direction: column;
         }
         .Top.fixed-nav {
-          display: none;
+          top: 0%;
+          position: fixed;
+          bottom: initial;
+          background-color: rgb(0, 0, 0, 0.4);
+        }
+        .fixed-nav button {
+          padding: 5px 0;
         }
       }
 `}</style>
