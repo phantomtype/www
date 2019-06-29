@@ -96,7 +96,7 @@ func ExtractExif(reader io.Reader) Exif {
 		defer func() {
 			if state := recover(); state != nil {
 				err = log.Wrap(state.(error))
-				log.Panic(err)
+				log.PanicIf(err)
 			}
 		}()
 
@@ -107,8 +107,9 @@ func ExtractExif(reader io.Reader) Exif {
 		if err != nil {
 			if log.Is(err, exif.ErrTagNotFound) {
 				fmt.Printf("Warning: Unknown tag: [%s] (%04x)\n", ifdPath, tagId)
+				return nil
 			} else {
-				log.Panic(err)
+				log.PanicIf(err)
 			}
 		}
 
