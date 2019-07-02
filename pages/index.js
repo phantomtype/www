@@ -69,6 +69,11 @@ class Index extends React.Component {
       .SelectCity button:hover {
         background-color: #000;
       }
+      @media (max-width: 600px){
+        .SelectCity button {
+          padding: 5px 3vw;
+        }
+      }
 `}</style>
     </section>;
   }
@@ -93,7 +98,7 @@ class Index extends React.Component {
             <h1>PHANTOM TYPE </h1>
           </div>
         </section>
-        {this.SelectCity(true)}
+        {this.SelectCity()}
         {
           this.state.cities.indexOf('kanazawa') != -1 ?
             <City city={`kanazawa`} description={`The Jewel of Japan`} /> : null
