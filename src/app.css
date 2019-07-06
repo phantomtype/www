@@ -57,7 +57,7 @@ svg.logo {
   bottom: initial;
   background-color: rgb(0, 0, 0, 0.4);
 }
-.SelectCity a {
+.SelectCity button {
   background-color: transparent;
   color: #fff;
   padding: 15px 3vw;
@@ -67,11 +67,11 @@ svg.logo {
 
   cursor: pointer;
 }
-.SelectCity a:hover {
+.SelectCity button:hover {
   background-color: #000;
 }
 @media (max-width: 600px){
-  .SelectCity a {
+  .SelectCity button {
     padding: 5px 3vw;
   }
 }
@@ -87,7 +87,7 @@ h2 {
   text-align: center;
   font-size: 2.5rem;
   font-weight: 200;
-  margin: 60px 0 0 0;
+  margin: 80px 0 0 0;
   text-transform: uppercase;
 }
 .desc {
@@ -127,7 +127,6 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: start;
-  text-align: "left";
   color: #ccc;
   font-size: 1.0rem;
   font-weight: 200;

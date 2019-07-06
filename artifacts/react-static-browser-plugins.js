@@ -23,11 +23,6 @@ const plugins = [{
         hooks: {}
       },
 {
-        location: "../node_modules/react-static-plugin-svg",
-        plugins: [],
-        hooks: {}
-      },
-{
         location: "..",
         plugins: [],
         hooks: {}

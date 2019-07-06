@@ -7,26 +7,16 @@ import React from "react";
 
 export default {
   entry: path.join(__dirname, 'src', 'index.tsx'),
-  // getRoutes: async () => {
-    // const { data: posts } /* :{ data: Post[] } */ = await axios.get(
-    //   'https://jsonplaceholder.typicode.com/posts'
-    // )
-    // return [
-    //   {
-    //     path: '/blog',
-    //     getData: () => ({
-    //       posts,
-    //     }),
-    //     children: posts.map((post /* : Post */) => ({
-    //       path: `/post/${post.id}`,
-    //       template: 'src/containers/Post',
-    //       getData: () => ({
-    //         post,
-    //       }),
-    //     })),
-    //   },
-    // ]
-  // },
+  getRoutes: async () => {
+    const { data: photos } = await axios.get( 'https://phantomtype.com/photo' )
+    console.log(photos)
+    return [
+      {
+        path: '/',
+        getData: () => ({ photos }),
+      }
+    ]
+  },
   Document: ({ Html, Head, Body, children, siteDate, renderMeta }) => (
     <Html>
       <Head>
@@ -49,6 +39,5 @@ export default {
     ],
     require.resolve('react-static-plugin-reach-router'),
     require.resolve('react-static-plugin-sitemap'),
-    'react-static-plugin-svg',
   ],
 }
