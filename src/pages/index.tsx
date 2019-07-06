@@ -7,8 +7,11 @@ export default () => {
   const { photos } = useRouteData()
   const ps = photos.photos
   const [scroll, setScroll] = useState(0)
-  window.addEventListener('scroll', () => { setScroll(window.scrollY) });
-  const top = window.innerHeight - 100
+  var top = 0
+  if (typeof window !== 'undefined') {
+    window.addEventListener('scroll', () => { setScroll(window.scrollY) });
+    top = window.innerHeight - 100
+  }
   const [city, setCity] = useState('kyoto')
 
   function sc(city) {
