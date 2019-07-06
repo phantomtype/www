@@ -19,6 +19,7 @@ import (
 func init() {
 	http.HandleFunc("/hello", handler)
 	http.HandleFunc("/prepare", prepareHandler)
+	http.HandleFunc("/photo", allPhotoHandler)
 }
 
 type Photos struct {
@@ -118,6 +119,19 @@ func handler(w http.ResponseWriter, r *http.Request)  {
 	q.GetAll(ctx, &photos)
 
 	result := Photos{Name:"hoge", Photos:photos}
+	j, _ := json.Marshal(result)
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	fmt.Fprint(w, string(j))
+}
+
+func allPhotoHandler(w http.ResponseWriter, r *http.Request)  {
+	ctx := appengine.NewContext(r)
+
+	photos := []Photo{}
+	q := datastore.NewQuery("Photo")
+	q.GetAll(ctx, &photos)
+
+	result := Photos{Name:"photos", Photos:photos}
 	j, _ := json.Marshal(result)
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	fmt.Fprint(w, string(j))
