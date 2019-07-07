@@ -10,7 +10,7 @@ export default () => {
   var top = 0
   if (typeof window !== 'undefined') {
     window.addEventListener('scroll', () => { setScroll(window.scrollY) });
-    top = window.innerHeight - 100
+    top = window.innerHeight - 200
   }
   const [city, setCity] = useState('kyoto')
 

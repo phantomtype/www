@@ -22,7 +22,6 @@ section.splash {
     top: 50%;
     left: 50%;
     transform: translate3d(-50%, -60%, 0);
-    justify-content: center;
     align-items: center;
 
     svg.logo {
@@ -38,7 +37,10 @@ section.splash {
 
     .description {
       color: #fff;
-      font-size: 140%;
+      font-size: 2.0vw;
+      @media (max-width: 600px){
+        font-size: 5vw;
+      }
     }
   }
 }
@@ -49,11 +51,13 @@ section.splash {
   justify-content: center;
 
   & button {
+    font-weight: 200;
     background-color: transparent;
     color: #fff;
     padding: 15px 3vw;
     @media (max-width: 600px){
-      padding: 5px 3vw;
+      font-size: 4vw;
+      padding: 5px 2vw;
     }
     text-decoration: none;
     border: #cccccc 1px solid;
