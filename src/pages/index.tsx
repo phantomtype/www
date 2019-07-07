@@ -23,12 +23,12 @@ export default () => {
   return (
     <div>
       <section className="splash">
-        <img className="splash"
+        <img className="splash-image"
              src="https://storage.googleapis.com/phantomtype-180814.appspot.com/splash/splash-1.jpg"/>
         <div className="title">
           <img src='/logomark-white.svg' className="logo" />
-          <h1>PHANTOM TYPE</h1>
-          <p>a Japan photo gallery.</p>
+          <h1 className='siteTitle'>PHANTOM TYPE</h1>
+          <p className='description'>a Japan photo gallery.</p>
         </div>
       </section>
       <section className={`SelectCity Top ${scroll > top ? 'fixed-nav': ''}`}>

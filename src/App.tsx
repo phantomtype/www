@@ -2,7 +2,7 @@ import React from 'react'
 import {Root, Routes} from 'react-static'
 import { Router } from '@reach/router'
 import Dynamic from 'containers/Dynamic'
-import './app.css'
+import './app.scss'
 
 // Any routes that start with 'dynamic' will be treated as non-static routes
 // addPrefetchExcludes(['dynamic'])

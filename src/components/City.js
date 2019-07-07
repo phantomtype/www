@@ -11,8 +11,8 @@ function byDateTime(a, b) {
 function City({city, description, photos}) {
   return (
     <section className={`City`} id={city}>
-      <h2>{city}</h2>
-      <p className="desc">{description}</p>
+      <h2 className='cityName'>{city}</h2>
+      <p className="description">{description}</p>
       {
         photos.sort(byDateTime).map((p, i) => {
           // const src = "https://storage.googleapis.com/phantomtype-180814.appspot.com/" + p.name;
