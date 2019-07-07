@@ -13,54 +13,50 @@ handlers:
 
 - url: /(.*\.css)
   mime_type: text/css
-  static_files: out/\1
-  upload: out/(.*\.css)
+  static_files: dist/\1
+  upload: dist/(.*\.css)
 
 - url: /(.*\.html)
   mime_type: text/html
-  static_files: out/\1
-  upload: out/(.*\.html)
+  static_files: dist/\1
+  upload: dist/(.*\.html)
 
 - url: /(.*\.ico)
   mime_type: image/x-icon
-  static_files: out/\1
-  upload: out/(.*\.ico)
+  static_files: dist/\1
+  upload: dist/(.*\.ico)
 
 - url: /(.*\.js)
   mime_type: text/javascript
-  static_files: out/\1
-  upload: out/(.*\.js)
+  static_files: dist/\1
+  upload: dist/(.*\.js)
 
 - url: /(.*\.ttf)
   mime_type: font/truetype
-  static_files: out/\1
-  upload: out/(.*\.ttf)
+  static_files: dist/\1
+  upload: dist/(.*\.ttf)
 
 - url: /(.*\.woff)
   mime_type: application/x-font-woff
-  static_files: out/\1
-  upload: out/(.*\.woff)
+  static_files: dist/\1
+  upload: dist/(.*\.woff)
 
 - url: /(.*\.xml)
   mime_type: application/xml
-  static_files: out/\1
-  upload: out/(.*\.xml)
+  static_files: dist/\1
+  upload: dist/(.*\.xml)
 
 - url: /(.*\.(bmp|gif|ico|jpeg|jpg|png|svg))
-  static_files: out/\1
-  upload: out/(.*\.(bmp|gif|ico|jpeg|jpg|png|svg))
+  static_files: dist/\1
+  upload: dist/(.*\.(bmp|gif|ico|jpeg|jpg|png|svg))
 
 - url: /(.+)/
-  static_files: out/\1/index.html
-  upload: out/(.+)/index.html
-
-- url: /(.+)
-  static_files: out/\1/index.html
-  upload: out/(.+)/index.html
+  static_files: dist/\1/index.html
+  upload: dist/(.+)/index.html
 
 - url: /
-  static_files: out/index.html
-  upload: out/index.html
+  static_files: dist/index.html
+  upload: dist/index.html
 
 skip_files:
   - ^\.idea/.*
@@ -72,4 +68,6 @@ skip_files:
   - ^components/.*
   - ^pages/.*
   - ^exif_parse_dev/.*
+  - ^tmp/.*
+  - ^types/.*
 
